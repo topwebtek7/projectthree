@@ -1,3 +1,3 @@
 const angular = require('angular');
 
-angular.module('projectThree', []);
+angular.module('gradeBook', []);
