@@ -94,7 +94,17 @@ module.exports = ShowController;
 /* 2 */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/Aylin/GA/project-3/client/components/signup/signup.controller.js'");
+=======
+SignupController.$inject = [];
+
+function SignupController() {
+  const vm = this;
+}
+
+module.exports = SignupController;
+>>>>>>> aylin-branch
 
 /***/ }),
 /* 3 */
@@ -156,9 +166,23 @@ angular.module('gradeBook').component('show', component);
 
 /***/ }),
 /* 6 */
+<<<<<<< HEAD
 /***/ (function(module, exports) {
 
 throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/Aylin/GA/project-3/client/components/signup/signup.component.js'");
+=======
+/***/ (function(module, exports, __webpack_require__) {
+
+const controller = __webpack_require__(2);
+const template = __webpack_require__(10);
+
+const component = {
+  controller: controller,
+  template: template
+};
+
+angular.module('gradeBook').component('signup', component);
+>>>>>>> aylin-branch
 
 /***/ }),
 /* 7 */
@@ -4862,7 +4886,16 @@ module.exports = "<div class=\"login-section\">\n  <h1>Login</h1>\n\n  <form met
 module.exports = "<div class=\"show-section\">\n  <h1>Show</h1>\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n</div>\n";
 
 /***/ }),
+<<<<<<< HEAD
 /* 10 */,
+=======
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"signup-section\">\n  <h1>Signup</h1>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"login\" value=\"submit\">\n  </form>\n\n</div>\n";
+
+/***/ }),
+>>>>>>> aylin-branch
 /* 11 */
 /***/ (function(module, exports) {
 
