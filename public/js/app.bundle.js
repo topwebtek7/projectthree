@@ -72,7 +72,7 @@
 
 const angular = __webpack_require__(2);
 
-angular.module('projectThree', []);
+angular.module('gradeBook', []);
 
 /***/ }),
 /* 1 */
