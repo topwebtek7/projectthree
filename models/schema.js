@@ -20,7 +20,7 @@ var StudentSchema = new Schema({
   assignments: [AssignmentSchema],
 });
 
-var TeacherSchema = new Schema({
+var UserSchema = new Schema({
 		username: String,
 		password: String,
 		students: [StudentSchema],
@@ -37,12 +37,12 @@ AssignmentSchema.pre('save', function(next){
 
 //might add a non-MVP classModel
 
-var TeacherModel = mongoose.model("Teacher", TeacherSchema);
+var UserModel = mongoose.model("User", UserSchema);
 var StudentModel = mongoose.model("Student", StudentSchema);
 var AssignmentModel = mongoose.model("Assignment", AssignmentSchema);
 
 module.exports = {
-	Teacher: TeacherModel,
+	User: UserModel,
 	Student: StudentModel,
 	Assignment: AssignmentModel
 };
