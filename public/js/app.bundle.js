@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -92,10 +92,22 @@ module.exports = ShowController;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+SignupController.$inject = [];
+
+function SignupController() {
+  const vm = this;
+}
+
+module.exports = SignupController;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const angular = __webpack_require__(9);
-__webpack_require__(5);
+const angular = __webpack_require__(12);
+__webpack_require__(7);
 
 angular.module('gradeBook', ['ui.router']).config(uiRouterSetup);
 
@@ -121,11 +133,11 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
-const template = __webpack_require__(6);
+const template = __webpack_require__(8);
 
 const component = {
   controller: controller,
@@ -135,11 +147,11 @@ const component = {
 angular.module('gradeBook').component('login', component);
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
-const template = __webpack_require__(7);
+const template = __webpack_require__(9);
 
 const component = {
   controller: controller,
@@ -149,7 +161,21 @@ const component = {
 angular.module('gradeBook').component('show', component);
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const controller = __webpack_require__(2);
+const template = __webpack_require__(10);
+
+const component = {
+  controller: controller,
+  template: template
+};
+
+angular.module('gradeBook').component('signup', component);
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 /**
@@ -4838,19 +4864,25 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"login-section\">\n  <h1>Login</h1>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show\" value=\"submit\">\n  </form>\n\n</div>\n";
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"show-section\">\n  <h1>Show</h1>\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n</div>\n";
 
 /***/ }),
-/* 8 */
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"signup-section\">\n  <h1>Signup</h1>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"login\" value=\"submit\">\n  </form>\n\n</div>\n";
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports) {
 
 /**
@@ -38200,22 +38232,24 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(8);
+__webpack_require__(11);
 module.exports = angular;
 
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(0);
 __webpack_require__(4);
-module.exports = __webpack_require__(1);
+__webpack_require__(0);
+__webpack_require__(5);
+__webpack_require__(1);
+__webpack_require__(6);
+module.exports = __webpack_require__(2);
 
 
 /***/ })
