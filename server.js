@@ -3,7 +3,7 @@ const app = express();
 
 const mongoose = require('mongoose');
 
-mongoose.connect('monogodb://localhost:project-3', function() {
+mongoose.connect('process.env.MONGODB_URI', function() {
   console.log("Mongo DB connected!");
 });
 
