@@ -7,7 +7,8 @@ var AssignmentSchema = new Schema({
 		       name: String,
 	 assignmentType: String,
 	 	dateCreated: Date,
-	 	     points: Number,
+	   pointsEarned: Number,
+	 	  pointsMax: Number,
 	 	    // dueDate: Date
 
 });
