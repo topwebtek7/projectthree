@@ -8,4 +8,4 @@ const component = {
 
 angular
   .module('gradeBook')
-  .component('login', LoginComponent);
+  .component('login', component);

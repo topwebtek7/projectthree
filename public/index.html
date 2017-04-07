@@ -10,17 +10,17 @@
   <body>
 
     <div class="header">
-      Welcome
+      <h1>Welcome</h1>
+
 
     </div>
 
     <div class="buttons">
 
-      <input ui-sref="" class="btn btn-default" type="submit" value="login">
-      <input ui-sref="" class="btn btn-default" type="submit" value="signup"><br>
+      <input ui-sref="login" class="btn btn-default" type="submit" value="login">
+      <input ui-sref="signin" class="btn btn-default" type="submit" value="signup"><br>
 
-      <a ui-sref="">Login</a>
-      <a ui-sref="">Signup</a>
+      <ui-view></ui-view>
 
     </div>
 
