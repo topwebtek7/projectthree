@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html ng-app="projectThree">
+<html ng-app="gradeBook">
   <head>
     <meta charset="utf-8">
     <title>Project 3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="js/app.bundle.js"></script>
   </head>
   <body>
-    <h1>I'm working! {{3 + 3}}</h1>
+
+    <div class="header">
+      Welcome
+
+    </div>
+
+    <div class="buttons">
+
+      <input ui-sref="" class="btn btn-default" type="submit" value="login">
+      <input ui-sref="" class="btn btn-default" type="submit" value="signup"><br>
+
+      <a ui-sref="">Login</a>
+      <a ui-sref="">Signup</a>
+
+    </div>
 
   </body>
 </html>
