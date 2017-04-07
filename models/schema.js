@@ -15,7 +15,7 @@ var AssignmentSchema = new Schema({
 var StudentSchema = new Schema({
 	firstName: String,
 	 lastName: String,
-	 //schoolId: Number, 
+	 //schoolId: Number,
 	 //   image: String,
   assignments: [AssignmentSchema],
 });
@@ -28,7 +28,7 @@ var UserSchema = new Schema({
 
 AssignmentSchema.pre('save', function(next){
     now = new Date();
-    
+
     if ( !this.dateCreated ) {
         this.dateCreated = now;
     }
@@ -46,5 +46,3 @@ module.exports = {
 	Student: StudentModel,
 	Assignment: AssignmentModel
 };
-}
-
