@@ -23,7 +23,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
       template: '<signup></signup>'
     })
     .state('show', {
-      url: '/show/:id',
+      url: '/show/:userId',
       template: '<show></show>'
     });
 
