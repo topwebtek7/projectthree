@@ -38293,7 +38293,7 @@ module.exports = "<div class=\"login-section\">\n  <h1>LOGIN</h1>\n\t<!-- <p>{{$
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section\">\n  <h1>Show</h1>\n  \n  <p>{{$ctrl.current.username}}</p>\n<div ng-repeat=\"student in $ctrl.current.students\">\n  <p>{{student.firstName}}</p>\n</div>\n</div>\n";
+module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n  <hr>\n\n<div class=\"col col-md-3\">\n<h2>Students</h2>\n  <p ng-repeat=\"student in $ctrl.current.students\">\n  {{student.lastName}}, {{student.firstName}}</p>\n</div>\n\n<div class=\"col col-md-3\">\n<h2>Grades</h2>\n\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t{{student.grades}}</p>\n</div>\n\n<div class=\"col col-md-3\">\n<h2>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}} pts</h2>\n\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t{{student.assignments[1].pointsEarned}}</p>\n</div>\n\n<div class=\"col col-md-3\">\n<h2>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}} pts</h2>\n\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t{{student.assignments[1].pointsEarned}}</p>\n</div>\n\n</div>\n";
 
 /***/ }),
 /* 13 */
