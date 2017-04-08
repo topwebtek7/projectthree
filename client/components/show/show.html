@@ -1,34 +1,42 @@
 <div class="show-section">
   <h1>Welcome {{$ctrl.current.username}}</h1>
-  <hr>
+ <hr>
 
-<div class="col col-md-3">
-<h3>Students</h3>
-  <p ng-repeat="student in $ctrl.current.students">
-  {{student.lastName}}, {{student.firstName}}</p>
-</div>
+	<div class="col col-md-3">
+		<h3>Students</h3>
+		  <p ng-repeat="student in $ctrl.current.students">
+		  {{student.lastName}}, {{student.firstName}}</p>
+	</div>
 
-<div class="col col-md-3">
-<h3>Grades</h3>
-	<p ng-repeat="student in $ctrl.current.students">
-	{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%
-	</p> 
-</div>
+	<div class="col col-md-3">
+		<h3>Grades</h3>
+			<p ng-repeat="student in $ctrl.current.students">
+			{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%
+			</p> 
+	</div>
 
-<div class="col col-md-3">
-<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>
-	<div ng-repeat="student in $ctrl.current.students">
-	<input type="text" name="points-earned" ng-model = 
-	"student.assignments[1].pointsEarned">
+	<div class="col col-md-3">
+		<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>
+			<div ng-repeat="student in $ctrl.current.students">
+			<input type="text" name="points-earned" ng-model = 
+			"student.assignments[1].pointsEarned">
+			</div>
+	</div>
+
+	<div class="col col-md-3">
+		<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>
+			<div ng-repeat="student in $ctrl.current.students">
+			<input type="text" name="points-earned" ng-model = 
+			"student.assignments[0].pointsEarned">
+			</div>
 	</div>
 </div>
 
-<div class="col col-md-3">
-<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>
-	<div ng-repeat="student in $ctrl.current.students">
-	<input type="text" name="points-earned" ng-model = 
-	"student.assignments[0].pointsEarned">
-	</div>
-</div>
+<br>
+<br>
+<a ui-sref="createAssignment">Add new assignment HERE</a>
 
-</div>
+
+
+
+

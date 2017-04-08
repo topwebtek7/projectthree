@@ -1,0 +1,24 @@
+<div class="new">
+	<form ng-submit="$ctrl.addNewAssignment()" id="newAssignment">
+	<div>
+		<label for="newAssignment-name">Name: </label>
+		<input type="text" 
+		    ng-model="$ctrl.newAssignment.name" 
+		    placeholder="put a name here...">
+	</div>
+	<div>
+	    <label for="newAssignment-assignmentType">Assignment Type: </label>
+	    <input type="text" 
+	    	ng-model="$ctrl.newAssignment.assignmentType" 
+	    	placeholder="test... quiz... project...">
+	</div>
+	<div>
+	    <label for="newAssignment-pointsMax">Max Points: </label>
+	    <input type="text" 
+	    	ng-model="$ctrl.newAssignment.pointsMax" 
+	    	placeholder="test... quiz... project...">
+	</div>
+    <div>
+      <input type="submit" value="Add Assignment">
+    </div>
+</div>

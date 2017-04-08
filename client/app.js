@@ -25,6 +25,10 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
     .state('show', {
       url: '/show/:userId',
       template: '<show></show>'
+    })
+    .state('/createAssignment', {
+      url: '/create',
+      template: '<create-assignment></create-assignment>'
     });
 
     $urlRouterProvider.otherwise('/');
