@@ -1,7 +1,19 @@
-body {
+/*GENERAL*/
+
+body, .container-fluid {
   padding: 50px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.col {
-	background-color: #eeeee;
+
+/*HEADER*/
+.brand {
+  text-align: left;
+}
+
+.buttons {
+  text-align: right;
+  height: inherit;
+  padding: 20px;
 }
