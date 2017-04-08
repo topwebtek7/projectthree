@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+// var bodyParser = require('body-parser');
+// var methodOverride = require('method-override');
 var User = require('../models/User');
 
-route.get('/:id', function showAction(request, response) {
+//=============================
+// Show Page (User Logged In)
+//=============================
+
+router.get('/:id', function showAction(request, response) {
 	var id = request.params.id;
 
 	User.findById({_id: id}, function(error, user) {
