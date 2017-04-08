@@ -23,6 +23,7 @@ var StudentSchema = new Schema({
 
 var UserSchema = new Schema({
 		username: String,
+		email: String,
 		password: String,
 		students: [StudentSchema],
 });
