@@ -11,19 +11,27 @@
 <div class="col col-md-3">
 <h2>Grades</h2>
 	<p ng-repeat="student in $ctrl.current.students">
-	{{student.grades}}</p>
+	{{(
+	student.assignments[1].pointsEarned +
+	student.assignments[0].pointsEarned) /
+	(student.assignments[1].pointsMax +
+	student.assignments[0].pointsMax)}}</p> 
 </div>
 
 <div class="col col-md-3">
-<h2>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}} pts</h2>
-	<p ng-repeat="student in $ctrl.current.students">
-	{{student.assignments[1].pointsEarned}}</p>
+<h2>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h2>
+	<div ng-repeat="student in $ctrl.current.students">
+	<input type="text" name="points-earned" ng-model = 
+	"student.assignments[1].pointsEarned">
+	</div>
 </div>
 
 <div class="col col-md-3">
 <h2>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}} pts</h2>
-	<p ng-repeat="student in $ctrl.current.students">
-	{{student.assignments[1].pointsEarned}}</p>
+	<div ng-repeat="student in $ctrl.current.students">
+	<input type="text" name="points-earned" ng-model = 
+	"student.assignments[0].pointsEarned">
+	</div>
 </div>
 
 </div>
