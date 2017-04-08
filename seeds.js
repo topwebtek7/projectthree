@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var User = require('./models/user.js');
 var Student = require('./models/student.js');
 
 
@@ -22,20 +23,27 @@ var seededAssignments = [ {
 	pointsMax: 50}	
 ];
 
-var students = [
-	{ firstName: 'David', lastName: 'Davis', assignments: [seededAssignments]},
-	{ firstName: 'Aylin', lastName: 'Jobs', assignments: [seededAssignments]},
-	{ firstName: 'Gibby', lastName: 'Smith', assignments: [seededAssignments]},
-	{ firstName: 'Jenny', lastName: 'Davis', assignments: [seededAssignments]},
-	{ firstName: 'Jill', lastName: 'Davis', assignments: [seededAssignments]},
+var testStudents = [
+	{ firstName: 'David', lastName: 'Davis', assignments: seededAssignments},
+	{ firstName: 'Aylin', lastName: 'Jobs', assignments: seededAssignments},
+	{ firstName: 'Gibby', lastName: 'Smith', assignments: seededAssignments},
+	{ firstName: 'Jenny', lastName: 'Davis', assignments: seededAssignments},
+	{ firstName: 'Jill', lastName: 'Davis', assignments: seededAssignments},
 	];	
 
-Student.remove({})
+
+var users = [ 
+  	username: 'TestWoman',
+  	password: 'abc',
+  	students: testStudents
+  	];
+
+User.remove({})
   .then(function(){
-  	return Student.create(students);
+  	return User.create(users);
   })
-  .then(function(students){
-  	console.log(students);
+  .then(function(users){
+  	console.log(users);
   })
   .then(function(){
   	mongoose.connection.close(function () {
