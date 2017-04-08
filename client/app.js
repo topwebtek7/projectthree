@@ -2,10 +2,11 @@ const angular = require('angular');
 require('angular-ui-router');
 
 angular
-  .module('gradeBook', []);
+  .module('gradeBook', ['ui.router'])
   .config(uiRouterSetup);
 
 uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
+
 function uiRouterSetup($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -17,9 +18,9 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
       url: '/login',
       template: '<login></login>'
     })
-    .state('signin', {
-      url: '/signin',
-      template: '<signin></signin>'
+    .state('signup', {
+      url: '/signup',
+      template: '<signup></signup>'
     })
     .state('show', {
       url: '/show',
@@ -28,4 +29,3 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
 }
-
