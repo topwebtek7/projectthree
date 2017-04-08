@@ -34,6 +34,7 @@ var testStudents = [
 
 var users = [ 
   	username: 'TestWoman',
+  	email: 'abc@abc.com',
   	password: 'abc',
   	students: testStudents
   	];

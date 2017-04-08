@@ -74,6 +74,7 @@ LoginController.$inject = [];
 
 function LoginController() {
   const vm = this;
+  let temp = '58e8f03b22c5dc033454ed1b';
 }
 
 module.exports = LoginController;
@@ -82,10 +83,26 @@ module.exports = LoginController;
 /* 1 */
 /***/ (function(module, exports) {
 
-ShowController.$inject = [];
+ShowController.$inject = ['$stateParams', 'UsersService'];
 
-function ShowController() {
+function ShowController($stateParams, UsersService) {
   const vm = this;
+  vm.current = {};
+  const userId = '58e8f03b22c5dc033454ed1b';
+
+  activate();
+
+  function activate() {
+    loadCurrent();
+  }
+
+  function loadCurrent(userId) {
+    console.log($stateParams);
+
+    UsersService.loadCurrent($stateParams.userId).then(function resolve(response) {
+      vm.current = response.data.user;
+    });
+  }
 }
 
 module.exports = ShowController;
@@ -125,7 +142,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
     url: '/signup',
     template: '<signup></signup>'
   }).state('show', {
-    url: '/show/58e8f03b22c5dc033454ed1b',
+    url: '/show/:userId',
     template: '<show></show>'
   });
 
@@ -38271,7 +38288,7 @@ module.exports = angular;
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section\">\n  <h1>Login</h1>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show\" value=\"submit\">\n  </form>\n\n</div>\n";
+module.exports = "<div class=\"login-section\">\n  <h1>LOGIN</h1>\n\t<!-- <p>{{$ctrl.temp}}</p> -->\n  <form method=\"post\" ui-sref=\"show({ userId: temp})\">\n  \t<p>{{temp}}</p>\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form>\n\n</div>\n";
 
 /***/ }),
 /* 12 */
