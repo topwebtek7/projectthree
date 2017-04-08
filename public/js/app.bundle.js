@@ -88,7 +88,6 @@ ShowController.$inject = ['$stateParams', 'UsersService'];
 function ShowController($stateParams, UsersService) {
   const vm = this;
   vm.current = {};
-  const userId = '58e8f03b22c5dc033454ed1b';
 
   activate();
 
@@ -38294,7 +38293,7 @@ module.exports = "<div class=\"login-section\">\n  <h1>LOGIN</h1>\n\t<!-- <p>{{$
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section\">\n  <h1>Show</h1>\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n</div>\n";
+module.exports = "<div class=\"show-section\">\n  <h1>Show</h1>\n  \n  <p>{{$ctrl.current.username}}</p>\n<div ng-repeat=\"student in $ctrl.current.students\">\n  <p>{{student.firstName}}</p>\n</div>\n</div>\n";
 
 /***/ }),
 /* 13 */
