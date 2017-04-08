@@ -102,15 +102,6 @@ function ShowController($stateParams, $scope, UsersService) {
         UsersService.loadCurrent($stateParams.userId).then(function resolve(response) {
             vm.current = response.data.user;
         });
-
-        // console.log("Number of students" + vm.current.students};
-
-
-        // for (var i = 0; i < vm.current[0].students.length; i++) {
-        //   vm.studentsGrades[i] = vm.current.students[i].assignment[0].pointsEarned + 
-        //   vm.current.students[i].assignment[0].pointsEarned;
-        //   console.log(vm.studentsGrades[i]);
-        // 
     }
 
     $scope.getSumPointsEarned = function (student) {
@@ -38321,7 +38312,7 @@ module.exports = "<div class=\"login-section\">\n  <h2>Login</h2>\n\t<!-- <p>{{$
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n  <hr>\n\n<div class=\"col col-md-3\">\n<h3>Students</h3>\n  <p ng-repeat=\"student in $ctrl.current.students\">\n  {{student.lastName}}, {{student.firstName}}</p>\n</div>\n\n<div class=\"col col-md-3\">\n<h3>Grades</h3>\n\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number }}\n\t</p> \n</div>\n\n<div class=\"col col-md-3\">\n<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}} pts</h3>\n\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\"student.assignments[1].pointsEarned\">\n\t</div>\n</div>\n\n<div class=\"col col-md-3\">\n<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}} pts</h3>\n\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\"student.assignments[0].pointsEarned\">\n\t</div>\n</div>\n\n</div>\n";
+module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n  <hr>\n\n<div class=\"col col-md-3\">\n<h3>Students</h3>\n  <p ng-repeat=\"student in $ctrl.current.students\">\n  {{student.lastName}}, {{student.firstName}}</p>\n</div>\n\n<div class=\"col col-md-3\">\n<h3>Grades</h3>\n\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t</p> \n</div>\n\n<div class=\"col col-md-3\">\n<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>\n\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\"student.assignments[1].pointsEarned\">\n\t</div>\n</div>\n\n<div class=\"col col-md-3\">\n<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>\n\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\"student.assignments[0].pointsEarned\">\n\t</div>\n</div>\n\n</div>\n";
 
 /***/ }),
 /* 13 */
