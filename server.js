@@ -14,6 +14,9 @@ mongoose.connection.on('error', function (err) {
 
 app.use(express.static(__dirname + '/public'));
 
+var usersController = require('./controllers/users.js');
+app.use('/api/users', usersController);
+
 app.listen(process.env.PORT || 3000, function() {
   console.log("We are up and running...");
 });
