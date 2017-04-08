@@ -4902,7 +4902,7 @@ angular.module('ui.router.state')
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section\">\n  <h1>LOGIN</h1>\n\t<!-- <p>{{$ctrl.temp}}</p> -->\n  <form method=\"post\" ui-sref=\"show({ userId: temp})\">\n  \t<p>{{temp}}</p>\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form>\n\n</div>\n";
+module.exports = "<div class=\"login-section\">\n  <h2>Login</h2>\n\t<!-- <p>{{$ctrl.temp}}</p> -->\n  <form method=\"post\" ui-sref=\"show({ userId: temp})\">\n  \t<p>{{temp}}</p>\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form>\n\n</div>\n";
 
 /***/ }),
 /* 10 */
@@ -4914,7 +4914,7 @@ module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.us
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"signup-section\">\n  <h1>Signup</h1>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"login\" value=\"submit\">\n  </form>\n\n</div>\n";
+module.exports = "<div class=\"signup-section\">\n  <h2>Signup</h2>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"login\" value=\"submit\">\n  </form>\n\n</div>\n";
 
 /***/ }),
 /* 12 */

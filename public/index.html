@@ -7,22 +7,26 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="js/app.bundle.js"></script>
   </head>
-  <body>
+  <body class="container-fluid">
 
-    <div class="header">
-      <a href="/"><h1>Welcome</h1></a>
+    <div class="header row">
 
+      <div class="col col-md-6 brand">
+        <a href="/"><h1>Grade.ly</h1></a>
+      </div>
 
+      <div class="col col-md-6 buttons">
+          <input ui-sref="login" class="btn btn-default" type="submit" value="login">
+          <input ui-sref="signup" class="btn btn-default" type="submit" value="signup"><br>
+      </div>
     </div>
 
-    <div class="buttons">
+    <hr>
 
-      <input ui-sref="login" class="btn btn-default" type="submit" value="login">
-      <input ui-sref="signup" class="btn btn-default" type="submit" value="signup"><br>
+        <ui-view></ui-view>
 
-      <ui-view></ui-view>
 
-    </div>
+
 
   </body>
 </html>
