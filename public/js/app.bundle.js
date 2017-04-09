@@ -63,11 +63,17 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/davidhernquist/project-3/client/components/create.assignment/create.controller.js'");
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 LoginController.$inject = [];
@@ -80,7 +86,7 @@ function LoginController() {
 module.exports = LoginController;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
 ShowController.$inject = ['$stateParams', '$scope', 'UsersService'];
@@ -126,7 +132,7 @@ function ShowController($stateParams, $scope, UsersService) {
 module.exports = ShowController;
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 SignupController.$inject = [];
@@ -138,11 +144,11 @@ function SignupController() {
 module.exports = SignupController;
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const angular = __webpack_require__(10);
-__webpack_require__(8);
+const angular = __webpack_require__(12);
+__webpack_require__(10);
 
 angular.module('gradeBook', ['ui.router']).config(uiRouterSetup);
 
@@ -171,11 +177,17 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/davidhernquist/project-3/client/components/create.assignment/create.component.js'");
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(0);
-const template = __webpack_require__(11);
+const controller = __webpack_require__(1);
+const template = __webpack_require__(14);
 
 const component = {
   controller: controller,
@@ -185,11 +197,11 @@ const component = {
 angular.module('gradeBook').component('login', component);
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(1);
-const template = __webpack_require__(12);
+const controller = __webpack_require__(2);
+const template = __webpack_require__(15);
 
 const component = {
   controller: controller,
@@ -199,11 +211,11 @@ const component = {
 angular.module('gradeBook').component('show', component);
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(2);
-const template = __webpack_require__(13);
+const controller = __webpack_require__(3);
+const template = __webpack_require__(16);
 
 const component = {
   controller: controller,
@@ -213,7 +225,7 @@ const component = {
 angular.module('gradeBook').component('signup', component);
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 angular.module('gradeBook').service('UsersService', UsersService);
@@ -232,7 +244,7 @@ function UsersService($http) {
 }
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -4921,7 +4933,7 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /**
@@ -38298,43 +38310,46 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(9);
+__webpack_require__(11);
 module.exports = angular;
 
 
 /***/ }),
-/* 11 */
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"login-section\">\n  <h2>Login</h2>\n\t<!-- <p>{{$ctrl.temp}}</p> -->\n  <form method=\"post\" ui-sref=\"show({ userId: temp})\">\n  \t<p>{{temp}}</p>\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form>\n\n</div>\n";
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Students</h3>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Grades</h3>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p> \n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n\n<br>\n<br>\n<a ui-sref=\"createAssignment\">Add new assignment HERE</a>\n\n\n\n\n\n";
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"signup-section\">\n  <h2>Signup</h2>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"login\" value=\"submit\">\n  </form>\n\n</div>\n";
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
 __webpack_require__(4);
-__webpack_require__(0);
 __webpack_require__(5);
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(6);
+__webpack_require__(1);
+__webpack_require__(7);
 __webpack_require__(2);
-module.exports = __webpack_require__(7);
+__webpack_require__(8);
+__webpack_require__(3);
+module.exports = __webpack_require__(9);
 
 
 /***/ })
