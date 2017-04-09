@@ -38389,7 +38389,7 @@ module.exports = "<h1>test create assignment</h1>\n\n<div class=\"create\">\n\t<
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section\">\n  <h2>Login</h2>\n\t<!-- <p>{{$ctrl.temp}}</p> -->\n  <form method=\"post\" ui-sref=\"show({ userId: temp})\">\n  \t<p>{{temp}}</p>\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form>\n\n</div>\n";
+module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n\t<!-- <p>{{$ctrl.temp}}</p> -->\n  <form class=\"form-group\" method=\"post\" ui-sref=\"show({ userId: temp})\">\n  \t<p>{{temp}}</p>\n    <label>Email:</label>\n    <input class=\"form-control\" type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input class=\"form-control\" type=\"text\" name=\"password\"><br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form><br>\n\n  <input ui-sref=\"signup\" class=\"btn btn-default\" type=\"submit\" value=\"Sign Up\">\n\n\n</div>\n";
 
 /***/ }),
 /* 16 */

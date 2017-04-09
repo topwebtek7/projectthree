@@ -18,8 +18,8 @@ body, .container-fluid {
   padding: 20px;
 }
 
-/*SIGN UP PAGE*/
-.signup-section {
+/*SIGN UP and LOGIN PAGE*/
+.signup-section, .login-section {
   min-width: 300px;
   max-width: 300px;
   text-align: center;
