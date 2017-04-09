@@ -1,14 +1,12 @@
 <div class="login-section container-fluid">
   <h2>Login</h2>
-	<!-- <p>{{$ctrl.temp}}</p> -->
-  <form class="form-group" method="post" ui-sref="show({ userId: temp})">
-  	<p>{{temp}}</p>
+  <form class="form-group" ui-sref="show({ userId:'58e8f03b22c5dc033454ed1b'})">
     <label>Email:</label>
     <input class="form-control"
            type="text"
            name="email"
            required>
-           <small><div style="color: grey" ng-message="required">Username is required</div></small>
+           <small><div style="color: grey" ng-message="required">Email is required</div></small>
            <br>
 
     <label>Password</label>
@@ -23,7 +21,7 @@
   </form><br>
 
 
-  <h6>First time? <a ui-sref="signup" href="#">Start here.</a> </h6>
+  <h6>First time? <a ui-sref="signup">Start here.</a> </h6>
 
 
 </div>
