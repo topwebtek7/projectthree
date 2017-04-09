@@ -18,7 +18,7 @@
 	<div class="col col-md-3">
 		<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>
 			<div ng-repeat="student in $ctrl.current.students">
-			<input type="text" name="points-earned" ng-model =
+			<input type="number" name="points-earned" ng-model =
 			"student.assignments[1].pointsEarned">
 			</div>
 	</div>
@@ -26,7 +26,7 @@
 	<div class="col col-md-3">
 		<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>
 			<div ng-repeat="student in $ctrl.current.students">
-			<input type="text" name="points-earned" ng-model="student.assignments[0].pointsEarned">
+			<input type="number" name="points-earned" ng-model="student.assignments[0].pointsEarned">
 			</div>
 	</div>
 </div>
