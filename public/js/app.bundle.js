@@ -38401,7 +38401,7 @@ module.exports = "<div class=\"show-section row\">\n  <h1>Welcome {{$ctrl.curren
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"signup-section\">\n  <h2>Signup</h2>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"login\" value=\"submit\">\n  </form>\n\n</div>\n";
+module.exports = "<div class=\"signup-section container-fluid\">\n  <h2>Signup</h2>\n\n  <form class=\"form-group\" method=\"post\">\n    <label>Email:</label>\n    <input class=\"form-control\" type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input class=\"form-control\" type=\"text\" name=\"password\"><br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"login\" value=\"Submit\">\n  </form>\n  <br>\n\n  <input ui-sref=\"login\" class=\"btn btn-default\" type=\"submit\" value=\"Log In\">\n\n</div>\n";
 
 /***/ }),
 /* 18 */

@@ -1,14 +1,17 @@
-<div class="signup-section">
+<div class="signup-section container-fluid">
   <h2>Signup</h2>
 
-  <form method="post">
+  <form class="form-group" method="post">
     <label>Email:</label>
-    <input type="text" name="email"><br>
+    <input class="form-control" type="text" name="email"><br>
 
     <label>Password</label>
-    <input type="text" name="password">
+    <input class="form-control" type="text" name="password"><br>
 
-    <input type="submit" ui-sref="login" value="submit">
+    <input class="btn btn-primary" type="submit" ui-sref="login" value="Submit">
   </form>
+  <br>
+
+  <input ui-sref="login" class="btn btn-default" type="submit" value="Log In">
 
 </div>
