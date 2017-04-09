@@ -17,3 +17,9 @@ body, .container-fluid {
   height: inherit;
   padding: 20px;
 }
+
+
+/*DASHBOARD FOOTER*/
+.show-footer {
+  text-align: center;
+}
