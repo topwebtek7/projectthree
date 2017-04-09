@@ -168,7 +168,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
   }).state('show', {
     url: '/show/:userId',
     template: '<show></show>'
-  }).state('/createAssignment', {
+  }).state('createAssignment', {
     url: '/create',
     template: '<create-assignment></create-assignment>'
   });
@@ -236,10 +236,16 @@ function UsersService($http) {
 	const self = this;
 
 	self.loadCurrent = loadCurrent;
+	self.addNewAssignment = addNewAssignment;
 
 	function loadCurrent(id) {
 
 		return $http.get('/api/users/' + id);
+	}
+
+	function addNewAssignment(newAssignment) {
+
+		return $http.post('/api/users', newAssignment);
 	}
 }
 
@@ -38328,7 +38334,7 @@ module.exports = "<div class=\"login-section\">\n  <h2>Login</h2>\n\t<!-- <p>{{$
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Students</h3>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Grades</h3>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p> \n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n\n<br>\n<br>\n<a ui-sref=\"createAssignment\">Add new assignment HERE</a>\n\n\n\n\n\n";
+module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Students</h3>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Grades</h3>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p> \n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n\n<br>\n<br>\n<input ui-sref=\"createAssignment\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\">\n\n\n\n\n\n\n";
 
 /***/ }),
 /* 16 */
