@@ -44,65 +44,28 @@ router.post('/', function createUser(req, res){
 
 router.put('/:id', function updateAction(request, response) {
 
-  // update user and the users students and anything touching the db
   console.log ('I made it to the put');
 
-  // Solving the problem
-  // Find the current user
-  // Loop over each of that user's students
-  // For each student, push an assignment object
-    // Some come from req.body info
-    // Some are hardcoded (such as pointsEarned being 0)
-  // Save the user
+  var newAssignment = new Assignment({
+    name: request.body.name,
+    assignmentType: request.body.assignmentType,
+    pointsMax: request.body.pointsMax
+  });
+  console.log(newAssignment);
 
-  // Find the current user
 
-var id = request.params.id
+  var id = request.params.id
 
-  User
-    .findById({_id : id}, function(error, user) {
-      console.log ("Id from User findByID" + id);
-      if (error) console.log ("Error in the patch")
-      .exec(function pushAssignmentToAllStudents(err, user) {
-        // Loop over each of that user's students
-        console.log("Just before the foreach loop");
-        user.students.forEach(function pushAssignment(student, index) {
-          // For each student, push an assignment object
-            // Some come from req.body info
-            // Some are hardcoded (such as pointsEarned being 0)
+  User.findById((id), function(error, user) {
+    console.log("findbyid user" + user);
+  }).exec(function(error, user) {
+    user.students.forEach(function(student) {
+      student.assignments.push(newAssignment);
 
-          console.log("inside the for each loop");
+    });
+  user.save();
+  })
 
-          const assignment = new Assignment({
-/*            name: request.body.name,
-            assignmentType: request.body.assignmentType,
-            pointsEarned: 0,
-            pointsMax: request.body.pointsEarned,
-*/          name: "routerTest",
-            assignmentType: "Project",
-            pointsEarned: 0,
-            pointsMax: 40
-          }); // leave this for you to do
-
-          student.assignments.push(assignment);
-        });
-
-      })
-      // Save the user
-      
-      user.save(function(err, user) {
-          if (err) { 
-            console.log("The save is may not be working" + err);
-            response.send({ message: "Save is not working!"}) }
-
-          response.send({ user : user})
-          console.log(user);
-          });
-
-    })
-
-		//no need to redirect in this situation
-		//redirection can happen on the client side
   
 });
 
