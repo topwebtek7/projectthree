@@ -6,11 +6,6 @@ var User = require('../models/user');
 var Student = require('../models/student');
 var Assignment = require('../models/assignment');
 var logger = require('morgan');
-var User = require('../models/User');
-
-
-
-
 
 //=============================
 // Show Page (User Logged In)
@@ -22,7 +17,7 @@ router.get('/:id', function showAction(request, response) {
 	User.findById({_id: id}, function(error, user) {
 		if(error) response.json({message: 'Could not find the user b/c:' + error});
 
-		res.json({user: user});
+        response.json({user: user});
 	});
 });
 
@@ -31,14 +26,14 @@ router.get('/:id', function showAction(request, response) {
 // USER REGISTRATION
 //======================
 router.post('/', function createUser(req, res){
-  console.log('body:',request.body);
+  console.log('body:',req.body);
 
-  var user = new User(request.body);
+  var user = new User(req.body);
 
   user.save(function(error) {
     if(error) response.json({messsage: 'Could not ceate user b/c:' + error});
 
-    response.json({user: user});
+      res.json({user: user});
   });
 });
 

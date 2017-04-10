@@ -196,9 +196,9 @@ module.exports = ShowController;
 /* 4 */
 /***/ (function(module, exports) {
 
-SignupController.$inject = ['UsersService'];
+SignupController.$inject = ['$state', 'UsersService'];
 
-function SignupController(UsersService) {
+function SignupController($state, UsersService) {
   const vm = this;
 
   vm.addNewUser = addNewUser;
@@ -371,7 +371,7 @@ function UsersService($http) {
 			pointsMax: pointsMax });
 	}
 
-	function addNewUser(id) {
+	function addNewUser(newUser) {
 		return $http.post('/api/users/', newUser);
 	}
 

@@ -27,7 +27,7 @@ function UsersService($http) {
 				pointsMax: pointsMax});
 	}
 
-	function addNewUser(id) {
+	function addNewUser(newUser) {
 		return $http.post('/api/users/', newUser);
 	}
 
