@@ -70,7 +70,65 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/davidhernquist/project-3/client/components/create.assignment/create.controller.js'");
+CreateAssignmentController.$inject = ['$stateParams', 'UsersService'];
+
+function CreateAssignmentController($stateParams, UsersService) {
+  const vm = this;
+
+  //vm.loadCurrent = loadCurrent;
+  vm.addNewAssignment = addNewAssignment; //attaching the function to vm
+  vm.newAssignment = {}; //initializing newAssignment
+  vm.current = {};
+
+  activate();
+
+  function activate() {
+    addNewAssignment();
+  }
+
+  function addNewAssignment() {
+    console.log('this is from addNewAssignment' + vm.newAssignment.name);
+
+    UsersService.loadCurrent($stateParams.userId).then(function resolve(response) {
+      vm.current = response.data.user;
+
+      for (var i = 0; i < vm.current.students.length; i++) {
+        vm.current.students[i].assignments.push(vm.newAssignment);
+      }
+      console.log("vm current " + vm.current.username);
+      console.log("ass2" + vm.current.students[3].assignments[1].name);
+      console.log("ass3" + vm.current.students[3].assignments[2].name);
+    });
+
+    UsersService.updateUser(vm.current._id).then(function resolve(response) {
+      console.log(vm.current);
+    });
+
+    vm.current = {};
+  }
+
+  /*function loadCurrent() {
+  	console.log($stateParams);
+  	UsersService
+  		.loadCurrent($stateParams.userId)
+  		.then(function resolve(response) {
+  			vm.current = response.data.user;
+  		})
+   	for (var i = 0; i < vm.current.students.length; i++) {
+  		console.log(i);
+  	}
+  	
+   addNewAssignment();
+  }
+  function addNewAssignment() {*/
+  /*UserService
+  	.addAssignment(vm.newAssignment)
+  	.then(function resolve(response){
+  		vm.newAssignment;
+  	});*/
+}
+
+module.exports = CreateAssignmentController;
 
 /***/ }),
 /* 1 */
@@ -169,7 +227,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
     url: '/show/:userId',
     template: '<show></show>'
   }).state('createAssignment', {
-    url: '/create',
+    url: '/create/:userId',
     template: '<create-assignment></create-assignment>'
   });
 
@@ -178,9 +236,17 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/davidhernquist/project-3/client/components/create.assignment/create.component.js'");
+const controller = __webpack_require__(0);
+const template = __webpack_require__(13);
+
+const component = {
+  controller: controller,
+  template: template
+};
+
+angular.module('gradeBook').component('createAssignment', component);
 
 /***/ }),
 /* 6 */
@@ -236,16 +302,17 @@ function UsersService($http) {
 	const self = this;
 
 	self.loadCurrent = loadCurrent;
-	self.addNewAssignment = addNewAssignment;
+	self.updateUser = updateUser;
+	/*self.addNewAssignment = addNewAssignment;*/
 
 	function loadCurrent(id) {
 
 		return $http.get('/api/users/' + id);
 	}
 
-	function addNewAssignment(newAssignment) {
+	function updateUser(id) {
 
-		return $http.post('/api/users', newAssignment);
+		return $http.patch('/api/users/' + id);
 	}
 }
 
@@ -38324,7 +38391,12 @@ module.exports = angular;
 
 
 /***/ }),
-/* 13 */,
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>test create assignment</h1>\n\n <div class=\"create\">\n\t<form ng-submit=\"$ctrl.addNewAssignment()\" id=\"newAssignment\">\n\t<div>\n\t\t<label for=\"newAssignment-name\">Name: </label>\n\t\t<input type=\"text\" \n\t\t    ng-model=\"$ctrl.newAssignment.name\" \n\t\t    placeholder=\"put a name here...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-assignmentType\">Assignment Type: </label>\n\t    <input type=\"text\" \n\t    \tng-model=\"$ctrl.newAssignment.assignmentType\" \n\t    \tplaceholder=\"test... quiz... project...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-pointsMax\">Max Points: </label>\n\t    <input type=\"text\" \n\t    \tng-model=\"$ctrl.newAssignment.pointsMax\" \n\t    \tplaceholder=\"points...\">\n\t</div>\n    <div>\n      <input type=\"submit\" value=\"Add Assignment\">\n    </div>\n</div>  \n\n";
+
+/***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
@@ -38334,7 +38406,7 @@ module.exports = "<div class=\"login-section\">\n  <h2>Login</h2>\n\t<!-- <p>{{$
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Students</h3>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Grades</h3>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p> \n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n\n<br>\n<br>\n<input ui-sref=\"createAssignment\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\">\n\n\n\n\n\n\n";
+module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Students</h3>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Grades</h3>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p> \n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n\n<br>\n<br>\n<input ui-sref=\"createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\"> \n<!-- later try userId: $ctrl.current._id\n -->\n\n\n\n\n\n";
 
 /***/ }),
 /* 16 */

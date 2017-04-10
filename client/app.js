@@ -27,7 +27,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
       template: '<show></show>'
     })
     .state('createAssignment', {
-      url: '/create',
+      url: '/create/:userId',
       template: '<create-assignment></create-assignment>'
     });
 

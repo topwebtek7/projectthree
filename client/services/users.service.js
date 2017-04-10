@@ -8,17 +8,19 @@ function UsersService($http) {
 		const self = this;
 
 		self.loadCurrent = loadCurrent;
-		self.addNewAssignment = addNewAssignment;
+		self.updateUser = updateUser;
+		/*self.addNewAssignment = addNewAssignment;*/
 
 	function loadCurrent(id) {
 
-		return $http.get('/api/users/' + id);
+		return $http
+		.get('/api/users/' + id);
 	} 
 
 
-	function addNewAssignment(newAssignment) {
+	function updateUser(id) {
 
 		return $http
-		.post('/api/users', newAssignment);
+		.patch('/api/users/' + id );
 	}
 }
