@@ -49,7 +49,7 @@ var users = [
         students: testStudents
     }
 ];
-function seedStudents() {
+function seedDatabase() {
     // for (student of testStudents) {
     //     var newStudent = new Student(student);
     //     newStudent.save();
@@ -73,19 +73,24 @@ function seedStudents() {
                     return Student.create(testStudents);
                 })
                 .then(function(sts){
-                    console.log(sts);
+                    User.remove({})
+                        .then(function(){
+                            return User.create(users);
+                        })
+                        .then(function(users){
+                            console.log(users);
+                        })
+                        .then(function(){
+                            mongoose.connection.close(function () {
+                                console.log('Mongoose connection disconnected');
+                            });
+                        });
+
                 })
-                .then(function(){
-                    mongoose.connection.close(function () {
-                        console.log('Mongoose connection disconnected');
-                    });
-                });
 		});
 
 
 }
 
-seedStudents();
-
-
+seedDatabase();
 

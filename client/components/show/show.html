@@ -1,8 +1,7 @@
 <div class="show-section row">
-  <h1>Welcome {{$ctrl.current.username}}</h1>
- <hr>
 
-	<div class="col col-md-3">
+
+	<!-- <div class="col col-md-3">
 		<h4>Students</h4>
 		  <p ng-repeat="student in $ctrl.current.students">
 		  {{student.lastName}}, {{student.firstName}}</p>
@@ -28,12 +27,12 @@
 			<input type="number" name="points-earned" min="0" ng-model="student.assignments[0].pointsEarned">
 			</div>
 	</div>
-</div>
+</div> -->
 <div>
   <div class="col-lg-12">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              DataTables Advanced Tables
+                              <h3>{{$ctrl.current.username}}'s Students</h3>
                           </div>
                           <!-- /.panel-heading -->
                           <div class="panel-body">
@@ -52,50 +51,29 @@
                                       <tr ng-repeat="student in $ctrl.current.students" scope="row" class="odd gradeX" label="Students">
                                           <td>{{student.lastName}}, {{student.firstName}}</td>
                                           <td>{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%</td>
-                                          <td>{{student.assignments[0].pointsEarned}}</td>
-                                          <td>{{student.assignments[1].pointsEarned}}</td>
+                                          <td><input type="number" name="points-earned" min="0" ng-model="student.assignments[1].pointsEarned"></td>
+                                          <td><input type="number" name="points-earned" min="0" ng-model="student.assignments[0].pointsEarned"></td>
                                           <td class="center">X</td>
                                       </tr>
 
                                   </tbody>
                               </table>
                               <!-- /.table-responsive -->
-                              <div class="well">
+                              <!-- <div class="well">
                                   <h4>DataTables Usage Information</h4>
                                   <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
                                   <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
-                              </div>
+                              </div> -->
                           </div>
 
 <br>
-<<<<<<< HEAD
-
-<input ui-sref="createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})" class="btn btn-default" type="submit" value="create new assignment"> 
-
-
-
-
-=======
-<<<<<<< HEAD
-<div>
-=======
-<<<<<<< HEAD
-<input ui-sref="createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})" class="btn btn-default" type="submit" value="create new assignment"> 
-=======
->>>>>>> de3836cfccae29ada42e8618466100084a40e0d5
-<input ui-sref="createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})" class="btn btn-default" type="submit" value="create new assignment">
->>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
-<!-- later try userId: $ctrl.current._id
- -->
+<div class="new-assignment">
+  <input ui-sref="createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})" class="btn btn-default" type="submit" value="Add Assignment">
 </div>
->>>>>>> d66c13d94d01d10d3120a8038a8d0473ed0c13ce
+
+</div>
 <div class="show-footer">
-  <hr>
-  <input ui-sref="createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})" class="btn btn-primary" type="submit" value="Add Assignment">
-  <br>
 
-
-  <br>
   <input ui-sref="home" class="btn btn-default" type="submit" value="Log Out">
 
 </div>
