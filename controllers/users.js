@@ -19,22 +19,56 @@ router.get('/:id', function showAction(request, response) {
 	});
 });
 
+function updateStudents (newAssignment, user) {
+  for (var i = 0; i < user.students.length; i++){
+    const student = user.students[i];
+    student.assignments.push(newAssignment);
+  }
+}
+
 router.put('/:id', function updateAction(request, response) {
 
-//var newAssignmentToAdd =
-//probabaly not necessary
-  console ('I made it to the the put');
-  User.findByIdAndUpdate(request.params.id, {
-  	students: request.body.newStudents
-    
-  }, {new: true})
-  .exec(function(err, user) {
-  		if (err) { console.log(err);}
+  // update user and the users students and anything touching the db
+  console.log ('I made it to the put');
 
-  		console.log(user);
-  		//no need to redirect in this situation
-  		//redirection can happen on the client side
-  })
+  // Solving the problem
+  // Find the current user
+  // Loop over each of that user's students
+  // For each student, push an assignment object
+    // Some come from req.body info
+    // Some are hardcoded (such as pointsEarned being 0)
+  // Save the user
+
+  // Find the current user
+  User
+    .findById(request.params.id)
+    .exec(function pushAssignmentToAllStudents(err, user) {
+      // Loop over each of that user's students
+      user.students.forEach(function pushAssignment(student, index) {
+        // For each student, push an assignment object
+          // Some come from req.body info
+          // Some are hardcoded (such as pointsEarned being 0)
+        const assignment = new Assignment({
+          name: request.body.name,
+          assignmentType: request.body.assignmentType,
+          pointsEarned: 0,
+          pointsMax: request.body.pointsEarned,
+        }); // leave this for you to do
+
+        student.assignments.push(assignment);
+      });
+
+      response.send({ user : user})
+    })
+    // Save the user
+    
+    .save(function(err, user) {
+        if (err) { console.log(err); }
+
+        console.log(user);
+        });
+
+
 });
 
 /*var writers = [req.body.favorite1, req.body.favorite2, req.body.favorite3];
