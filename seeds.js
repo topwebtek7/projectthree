@@ -25,30 +25,49 @@ var seededAssignments = [
         pointsMax: 50
     }
 ];
+function getStudentsSeedData(assignments){
+    return [
+        { firstName: 'David', lastName: 'Davis', assignments: assignments},
+        { firstName: 'Aylin', lastName: 'Jobs', assignments: assignments},
+        { firstName: 'Gibby', lastName: 'Smith', assignments: assignments},
+        { firstName: 'Jenny', lastName: 'Davis', assignments: assignments},
+        { firstName: 'Jill', lastName: 'Davis', assignments: assignments},
+    ]
+}
+// var testStudents = ;
 
-var testStudents = [
-    { firstName: 'David', lastName: 'Davis', assignments: seededAssignments},
-    { firstName: 'Aylin', lastName: 'Jobs', assignments: seededAssignments},
-    { firstName: 'Gibby', lastName: 'Smith', assignments: seededAssignments},
-    { firstName: 'Jenny', lastName: 'Davis', assignments: seededAssignments},
-    { firstName: 'Jill', lastName: 'Davis', assignments: seededAssignments},
-];
 
+function getUsersSeedData(students){
+    return [
+        {
+            username: 'TestWoman',
+            email: 'abc@abc.com',
+            password: 'abc',
+            students: students
+        },
+        {
+            username: 'TestMan',
+            email: 'abc@abc.com',
+            password: 'abc',
+            students: students
+        }
+    ]
+}
 
-var users = [
-    {
-        username: 'TestWoman',
-        email: 'abc@abc.com',
-        password: 'abc',
-        students: testStudents
-    },
-    {
-        username: 'TestMan',
-        email: 'abc@abc.com',
-        password: 'abc',
-        students: testStudents
-    }
-];
+// var users = [
+//     {
+//         username: 'TestWoman',
+//         email: 'abc@abc.com',
+//         password: 'abc',
+//         students: testStudents
+//     },
+//     {
+//         username: 'TestMan',
+//         email: 'abc@abc.com',
+//         password: 'abc',
+//         students: testStudents
+//     }
+// ];
 function seedDatabase() {
     // for (student of testStudents) {
     //     var newStudent = new Student(student);
@@ -60,25 +79,37 @@ function seedDatabase() {
             return Assignment.create(seededAssignments);
         })
         .then(function(assignments){
-            console.log(assignments);
             var assignmentsList = [];
             for(assignment of assignments){
-            	assignmentsList.push(assignment._id);
-			}
-			return assignmentsList;
+                assignmentsList.push(assignment._id);
+            }
+            console.log(assignmentsList);
+            return assignmentsList;
         })
-		.then(function(assignments){
+        .then(function(assignments){
+            var testStudents = getStudentsSeedData(assignments);
             Student.remove({})
                 .then(function(){
                     return Student.create(testStudents);
                 })
+                .then(function(students){
+
+                    var studentsList = [];
+                    for(student of students){
+                        studentsList.push(student._id);
+                    }
+
+                    console.log(studentsList);
+                    return studentsList;
+                })
                 .then(function(sts){
+                    var users = getUsersSeedData(sts);
                     User.remove({})
                         .then(function(){
                             return User.create(users);
                         })
                         .then(function(users){
-                            console.log(users);
+                            // console.log(users);
                         })
                         .then(function(){
                             mongoose.connection.close(function () {
@@ -87,7 +118,7 @@ function seedDatabase() {
                         });
 
                 })
-		});
+        });
 
 
 }

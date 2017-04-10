@@ -18,14 +18,14 @@ var StudentSchema = new Schema({
 	 lastName: String,
 	 //schoolId: Number,
 	 //   image: String,
-  assignments: [AssignmentSchema],
+  assignments: [{type: Schema.Types.ObjectId, ref: 'Assignment'}],
 });
 
 var UserSchema = new Schema({
 		username: String,
 		email: String,
 		password: String,
-		students: [StudentSchema],
+		students: [{type: Schema.Types.ObjectId, ref: 'Student'}],
 });
 
 AssignmentSchema.pre('save', function(next){

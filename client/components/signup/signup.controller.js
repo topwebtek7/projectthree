@@ -1,6 +1,6 @@
-SignupController.$inject = [];
+SignupController.$inject = ['UsersService'];
 
-function SignupController() {
+function SignupController(UsersService) {
   const vm = this;
 
   vm.addNewUser = addNewUser;

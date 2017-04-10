@@ -30,7 +30,7 @@ router.get('/:id', function showAction(request, response) {
 // USER REGISTRATION
 //======================
 router.post('/', function createUser(req, res){
-	console.log('body:',request.body);
+  console.log('body:',request.body);
 
   var user = new User(request.body);
 
