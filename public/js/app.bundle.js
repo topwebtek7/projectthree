@@ -122,7 +122,9 @@ ShowController.$inject = ['$stateParams', '$scope', 'UsersService'];
 function ShowController($stateParams, $scope, UsersService) {
     const vm = this;
     vm.current = {};
+    vm.user = [];
     vm.studentsGrades = [];
+    vm.deleteUser = deleteUser;
 
     activate();
 
@@ -155,6 +157,14 @@ function ShowController($stateParams, $scope, UsersService) {
         }
         return total;
     };
+
+    function deleteUser(user) {
+        UsersService.deleteUser(user).then(function (response) {
+            console.log("Deleted");
+            // var index = vm.user.indexOf(user);
+            // vm.user.splice(index, 1);
+        });
+    }
 }
 
 module.exports = ShowController;
@@ -167,6 +177,20 @@ SignupController.$inject = [];
 
 function SignupController() {
   const vm = this;
+
+  vm.addNewUser = addNewUser;
+  vm.newUser = {};
+
+  activate();
+
+  function activate() {}
+
+  function addNewUser() {
+    UsersService.addNewUser(vm.newUser).then(function () {
+      vm.newUser = {};
+      $state.go('show');
+    });
+  }
 }
 
 module.exports = SignupController;
@@ -264,27 +288,7 @@ angular.module('gradeBook').component('signup', component);
 /* 9 */
 /***/ (function(module, exports) {
 
-angular.module('gradeBook').service('UsersService', UsersService);
-
-UsersService.$inject = ['$http'];
-
-function UsersService($http) {
-	const self = this;
-
-	self.loadCurrent = loadCurrent;
-	self.updateUser = updateUser;
-	/*self.addNewAssignment = addNewAssignment;*/
-
-	function loadCurrent(id) {
-
-		return $http.get('/api/users/' + id);
-	}
-
-	function updateUser(id) {
-
-		return $http.put('/api/users/' + id);
-	}
-}
+throw new Error("Module build failed: SyntaxError: Unexpected token (32:0)\n\n\u001b[0m \u001b[90m 30 | \u001b[39m\t\u001b[36mfunction\u001b[39m updateUser(id) {\n \u001b[90m 31 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 33 | \u001b[39m\t\t\u001b[36mreturn\u001b[39m $http\n \u001b[90m 34 | \u001b[39m\t\t\u001b[33m.\u001b[39mput(\u001b[32m'/api/users/'\u001b[39m \u001b[33m+\u001b[39m id)\u001b[33m;\u001b[39m\n \u001b[90m 35 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 10 */
@@ -38364,25 +38368,25 @@ module.exports = angular;
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>test create assignment</h1>\n\n <div class=\"create\">\n\t<form ng-submit=\"$ctrl.addNewAssignment()\" id=\"newAssignment\">\n\t<div>\n\t\t<label for=\"newAssignment-name\">Name: </label>\n\t\t<input type=\"text\" \n\t\t    ng-model=\"$ctrl.newAssignment.name\" \n\t\t    placeholder=\"put a name here...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-assignmentType\">Assignment Type: </label>\n\t    <input type=\"text\" \n\t    \tng-model=\"$ctrl.newAssignment.assignmentType\" \n\t    \tplaceholder=\"test... quiz... project...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-pointsMax\">Max Points: </label>\n\t    <input type=\"text\" \n\t    \tng-model=\"$ctrl.newAssignment.pointsMax\" \n\t    \tplaceholder=\"points...\">\n\t</div>\n    <div>\n      <input type=\"submit\" value=\"Add Assignment\">\n    </div>\n</div>  \n\n";
+module.exports = "<h1>test create assignment</h1>\n\n <div class=\"create\">\n\t<form ng-submit=\"$ctrl.addNewAssignment()\" id=\"newAssignment\">\n\t<div>\n\t\t<label for=\"newAssignment-name\">Name: </label>\n\t\t<input type=\"text\"\n\t\t    ng-model=\"$ctrl.newAssignment.name\"\n\t\t    placeholder=\"put a name here...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-assignmentType\">Assignment Type: </label>\n\t    <input type=\"text\"\n\t    \tng-model=\"$ctrl.newAssignment.assignmentType\"\n\t    \tplaceholder=\"test... quiz... project...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-pointsMax\">Max Points: </label>\n\t    <input type=\"text\"\n\t    \tng-model=\"$ctrl.newAssignment.pointsMax\"\n\t    \tplaceholder=\"points...\">\n\t</div>\n    <div>\n      <input class=\"btn btn-primary\" type=\"submit\" value=\"Add Assignment\">\n    </div>\n</div>\n</div>\n\n<div>\n\t<input onclick=\"history.back(-1)\" class=\"btn btn-default\" type=\"submit\" value=\"Go Back\">\n</div>\n";
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section\">\n  <h2>Login</h2>\n\t<!-- <p>{{$ctrl.temp}}</p> -->\n  <form method=\"post\" ui-sref=\"show({ userId: temp})\">\n  \t<p>{{temp}}</p>\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"show({ userId:'58eb9129be29bd3c1a4c731e'})\" value=\"submit\">\n  </form>\n\n</div>\n";
+module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n  <form class=\"form-group\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\">\n    <label>Email:</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"email\"\n           required>\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\n           <br>\n\n    <label>Password</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"password\"\n           required>\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\n    <br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form><br>\n\n\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\n\n<<<<<<< HEAD\n    <input type=\"submit\" ui-sref=\"show({ userId:'58eb9129be29bd3c1a4c731e'})\" value=\"submit\">\n  </form>\n=======\n>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba\n\n</div>\n";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Students</h3>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>Grades</h3>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p> \n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"text\" name=\"points-earned\" ng-model = \n\t\t\t\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n\n<br>\n<br>\n<input ui-sref=\"createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\"> \n<!-- later try userId: $ctrl.current._id\n -->\n\n\n\n\n\n";
+module.exports = "<div class=\"show-section row\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Students</h4>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Grades</h4>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n<br>\n<<<<<<< HEAD\n<input ui-sref=\"createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\"> \n=======\n<input ui-sref=\"createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\">\n>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba\n<!-- later try userId: $ctrl.current._id\n -->\n\n\n\n<div class=\"show-footer\">\n  <hr>\n  <input ui-sref=\"createAssignment\" class=\"btn btn-primary\" type=\"submit\" value=\"Add Assignment\">\n  <br>\n\n\n  <br>\n  <input ui-sref=\"home\" class=\"btn btn-default\" type=\"submit\" value=\"Log Out\">\n\n</div>\n";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"signup-section\">\n  <h2>Signup</h2>\n\n  <form method=\"post\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\">\n\n    <input type=\"submit\" ui-sref=\"login\" value=\"submit\">\n  </form>\n\n</div>\n";
+module.exports = "<div class=\"signup-section container-fluid\">\n  <h2>Signup</h2>\n\n  <form ng-submit=\"$ctrl.addNewUser()\" class=\"form-group\" method=\"post\">\n    <label>Email:</label>\n    <input class=\"form-control\" type=\"text\" ng-model=\"$ctrl.newUser.email\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input class=\"form-control\" type=\"text\" ng-model=\"$ctrl.newUser.password\" name=\"password\"><br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"login\" value=\"Submit\">\n  </form>\n  <br>\n\n  <h6>Already have an account? <a ui-sref=\"login\">Log in here.</a> </h6>\n\n</div>\n\n<div>\n  <li ng-repeat=\"user in $ctrl.current\">\n    <p>{{$ctrl.username}}</p>\n  <button ng-click=\"$ctrl.deleteUser(user)\" class=\"btn btn-warning\">Delete Assignment</button>\n  </li>\n</div>\n";
 
 /***/ }),
 /* 17 */

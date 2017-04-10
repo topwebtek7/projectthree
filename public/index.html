@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <script src="js/app.bundle.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-messages.min.js"></script>
   </head>
   <body class="container-fluid">
 
@@ -18,14 +20,13 @@
       <div class="col col-md-6 buttons">
         <input ui-sref="login" class="btn btn-default" type="submit" value="login">
         <input ui-sref="signup" class="btn btn-default" type="submit" value="signup">
-        
+
           <br>
       </div>
     </div>
-
     <hr>
+    <ui-view></ui-view>
 
-        <ui-view></ui-view>
 
   </body>
 </html>

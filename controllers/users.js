@@ -1,9 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var User = require('../models/user');
+var Student = require('../models/student');
+var Assignment = require('../models/assignment');
 var logger = require('morgan'); /*---this caused an error with GET*/
 //var methodOverride = require('method-override');
 var User = require('../models/User');
+
+
 
 //=============================
 // Show Page (User Logged In)
@@ -19,12 +25,30 @@ router.get('/:id', function showAction(request, response) {
 	});
 });
 
+<<<<<<< HEAD
 function updateStudents (newAssignment, user) {
   for (var i = 0; i < user.students.length; i++){
     const student = user.students[i];
     student.assignments.push(newAssignment);
   }
 }
+=======
+//======================
+// USER REGISTRATION
+//======================
+router.post('/', function createUser(req, res){
+	console.log('body:',request.body);
+
+  var user = new User(request.body);
+
+  user.save(function(error) {
+    if(error) response.json({messsage: 'Could not ceate user b/c:' + error});
+
+    response.json({user: user});
+  });
+});
+
+>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
 
 router.put('/:id', function updateAction(request, response) {
 
@@ -69,6 +93,13 @@ router.put('/:id', function updateAction(request, response) {
         });
 
 
+<<<<<<< HEAD
+=======
+		console.log(user);
+		//no need to redirect in this situation
+		//redirection can happen on the client side
+})
+>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
 });
 
 /*var writers = [req.body.favorite1, req.body.favorite2, req.body.favorite3];
@@ -94,9 +125,9 @@ router.patch('/:id', function updateAction(request, response) {
 
   User.findById({_id: id}, function(error, user) {
     if(error) response.json({message: 'Could not find user b/c:' + error});*/
-    
+
     /*console.log("router test: " + request.body.students[1].assignment[2].name)*/
-    
+
     /*for (var i = 0; i < request.body.students.length; i++) {
     	for (var j = 0; j < request.body.students[i].assignments.length; j++) {
     		if (request.body.students[i]) user.students[i].assignments[j] = request.body.students[i].assignment[j];
@@ -115,5 +146,19 @@ router.patch('/:id', function updateAction(request, response) {
     });
   }).select('-__v');
 });*/
+
+//=============================
+// Delete User
+//=============================
+
+router.delete('/:id', function destroyAction(request, response) {
+  var id = request.params.id;
+
+  User.remove({_id: id}, function(error) {
+    if(error) response.json({message: 'Could not delete criminal b/c:' + error});
+
+    response.json({message: 'Criminal successfully deleted'});
+  });
+});
 
 module.exports = router;

@@ -1,44 +1,52 @@
-<div class="show-section">
+<div class="show-section row">
   <h1>Welcome {{$ctrl.current.username}}</h1>
  <hr>
 
 	<div class="col col-md-3">
-		<h3>Students</h3>
+		<h4>Students</h4>
 		  <p ng-repeat="student in $ctrl.current.students">
 		  {{student.lastName}}, {{student.firstName}}</p>
 	</div>
 
 	<div class="col col-md-3">
-		<h3>Grades</h3>
+		<h4>Grades</h4>
 			<p ng-repeat="student in $ctrl.current.students">
 			{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%
-			</p> 
+			</p>
 	</div>
 
 	<div class="col col-md-3">
-		<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>
+		<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>
 			<div ng-repeat="student in $ctrl.current.students">
-			<input type="text" name="points-earned" ng-model = 
-			"student.assignments[1].pointsEarned">
+			<input type="number" name="points-earned" min="0" ng-model="student.assignments[1].pointsEarned">
 			</div>
 	</div>
 
 	<div class="col col-md-3">
-		<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>
+		<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>
 			<div ng-repeat="student in $ctrl.current.students">
-			<input type="text" name="points-earned" ng-model = 
-			"student.assignments[0].pointsEarned">
+			<input type="number" name="points-earned" min="0" ng-model="student.assignments[0].pointsEarned">
 			</div>
 	</div>
 </div>
-
 <br>
-<br>
+<<<<<<< HEAD
 <input ui-sref="createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})" class="btn btn-default" type="submit" value="create new assignment"> 
+=======
+<input ui-sref="createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})" class="btn btn-default" type="submit" value="create new assignment">
+>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
 <!-- later try userId: $ctrl.current._id
  -->
 
 
 
+<div class="show-footer">
+  <hr>
+  <input ui-sref="createAssignment" class="btn btn-primary" type="submit" value="Add Assignment">
+  <br>
 
 
+  <br>
+  <input ui-sref="home" class="btn btn-default" type="submit" value="Log Out">
+
+</div>

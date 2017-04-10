@@ -1,15 +1,32 @@
-<div class="login-section">
+<div class="login-section container-fluid">
   <h2>Login</h2>
-	<!-- <p>{{$ctrl.temp}}</p> -->
-  <form method="post" ui-sref="show({ userId: temp})">
-  	<p>{{temp}}</p>
+  <form class="form-group" ui-sref="show({ userId:'58e8f03b22c5dc033454ed1b'})">
     <label>Email:</label>
-    <input type="text" name="email"><br>
+    <input class="form-control"
+           type="text"
+           name="email"
+           required>
+           <small><div style="color: grey" ng-message="required">Email is required</div></small>
+           <br>
 
     <label>Password</label>
-    <input type="text" name="password">
+    <input class="form-control"
+           type="text"
+           name="password"
+           required>
+    <small><div style="color: grey" ng-message="required">Password is required</div></small>
+    <br>
 
+    <input class="btn btn-primary" type="submit" ui-sref="show({ userId:'58e8f03b22c5dc033454ed1b'})" value="submit">
+  </form><br>
+
+
+  <h6>First time? <a ui-sref="signup">Start here.</a> </h6>
+
+<<<<<<< HEAD
     <input type="submit" ui-sref="show({ userId:'58eb9129be29bd3c1a4c731e'})" value="submit">
   </form>
+=======
+>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
 
 </div>
