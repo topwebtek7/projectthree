@@ -61,13 +61,18 @@ var id = request.params.id
 
   User
     .findById({_id : id}, function(error, user) {
-      if (error) console ("Error in the patch")
+      console.log ("Id from User findByID" + id);
+      if (error) console.log ("Error in the patch")
       .exec(function pushAssignmentToAllStudents(err, user) {
         // Loop over each of that user's students
+        console.log("Just before the foreach loop");
         user.students.forEach(function pushAssignment(student, index) {
           // For each student, push an assignment object
             // Some come from req.body info
             // Some are hardcoded (such as pointsEarned being 0)
+
+          console.log("inside the for each loop");
+
           const assignment = new Assignment({
 /*            name: request.body.name,
             assignmentType: request.body.assignmentType,
