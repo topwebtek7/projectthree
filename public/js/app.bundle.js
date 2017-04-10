@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,6 +79,7 @@ function CreateAssignmentController($stateParams, UsersService) {
   vm.addNewAssignment = addNewAssignment; //attaching the function to vm
   vm.newAssignment = {}; //initializing newAssignment
   vm.current = {};
+  vm.updatedStudents = {};
 
   activate();
 
@@ -89,43 +90,12 @@ function CreateAssignmentController($stateParams, UsersService) {
   function addNewAssignment() {
     console.log('this is from addNewAssignment' + vm.newAssignment.name);
 
-    UsersService.loadCurrent($stateParams.userId).then(function resolve(response) {
+    //how the form data make it to the controller server-side???
+
+    UsersService.updateUser($stateParams.userId).then(function resolve(response) {
       vm.current = response.data.user;
-
-      for (var i = 0; i < vm.current.students.length; i++) {
-        vm.current.students[i].assignments.push(vm.newAssignment);
-      }
-      console.log("vm current " + vm.current.username);
-      console.log("ass2" + vm.current.students[3].assignments[1].name);
-      console.log("ass3" + vm.current.students[3].assignments[2].name);
     });
-
-    UsersService.updateUser(vm.current._id).then(function resolve(response) {
-      console.log(vm.current);
-    });
-
-    vm.current = {};
   }
-
-  /*function loadCurrent() {
-  	console.log($stateParams);
-  	UsersService
-  		.loadCurrent($stateParams.userId)
-  		.then(function resolve(response) {
-  			vm.current = response.data.user;
-  		})
-   	for (var i = 0; i < vm.current.students.length; i++) {
-  		console.log(i);
-  	}
-  	
-   addNewAssignment();
-  }
-  function addNewAssignment() {*/
-  /*UserService
-  	.addAssignment(vm.newAssignment)
-  	.then(function resolve(response){
-  		vm.newAssignment;
-  	});*/
 }
 
 module.exports = CreateAssignmentController;
@@ -229,8 +199,8 @@ module.exports = SignupController;
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const angular = __webpack_require__(13);
-__webpack_require__(11);
+const angular = __webpack_require__(12);
+__webpack_require__(10);
 
 angular.module('gradeBook', ['ui.router']).config(uiRouterSetup);
 
@@ -263,7 +233,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
-const template = __webpack_require__(14);
+const template = __webpack_require__(13);
 
 const component = {
   controller: controller,
@@ -277,7 +247,7 @@ angular.module('gradeBook').component('createAssignment', component);
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
-const template = __webpack_require__(15);
+const template = __webpack_require__(14);
 
 const component = {
   controller: controller,
@@ -291,7 +261,7 @@ angular.module('gradeBook').component('login', component);
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(2);
-const template = __webpack_require__(16);
+const template = __webpack_require__(15);
 
 const component = {
   controller: controller,
@@ -305,7 +275,7 @@ angular.module('gradeBook').component('show', component);
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(3);
-const template = __webpack_require__(17);
+const template = __webpack_require__(16);
 
 const component = {
   controller: controller,
@@ -318,71 +288,10 @@ angular.module('gradeBook').component('signup', component);
 /* 9 */
 /***/ (function(module, exports) {
 
-// angular
-// 	.module('gradeBook')
-// 	.service('AuthService', AuthService);
-//
-// AuthService.$inject = ['$http', '$state', 'Notification'];
-// function AuthService($http, $state, Notification) {
-//     const self = this;
-//
-//     self.logUserIn = logUserIn;
-//
-//     // function logUserIn(credentials) {
-//     //     return $http
-//     //         .post('/api/sessions', credentials)
-//     //         .then(function onSuccessDoThis(res) {
-//     //             $state.go('foldersIndex');
-//     //         }, function onErrorDoThis(res) {
-//     //             Notification.errorMessage(res.message);
-//     //         });
-//     // }
-// }
+throw new Error("Module build failed: SyntaxError: Unexpected token (32:0)\n\n\u001b[0m \u001b[90m 30 | \u001b[39m\t\u001b[36mfunction\u001b[39m updateUser(id) {\n \u001b[90m 31 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 33 | \u001b[39m\t\t\u001b[36mreturn\u001b[39m $http\n \u001b[90m 34 | \u001b[39m\t\t\u001b[33m.\u001b[39mput(\u001b[32m'/api/users/'\u001b[39m \u001b[33m+\u001b[39m id)\u001b[33m;\u001b[39m\n \u001b[90m 35 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
-
-angular.module('gradeBook').service('UsersService', UsersService);
-
-UsersService.$inject = ['$http'];
-
-function UsersService($http) {
-	const self = this;
-
-	self.loadCurrent = loadCurrent;
-	self.addNewAssignment = addNewAssignment;
-	self.addNewUser = addNewUser;
-	self.updateUser = updateUser;
-	/*self.addNewAssignment = addNewAssignment;*/
-	self.deleteUser = deleteUser;
-
-	function loadCurrent(id) {
-		return $http.get('/api/users/' + id);
-	}
-
-	function addNewAssignment(newAssignment) {
-
-		return $http.get('/api/users/' + id);
-	}
-
-	function addNewUser(id) {
-		return $http.post('/api/users/', newUser);
-	}
-
-	function updateUser(id) {
-
-		return $http.patch('/api/users/' + id);
-	}
-
-	function deleteUser(user) {
-		console.log("My user id is not working");
-		return $http.delete('/api/users/' + user._id);
-	}
-}
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports) {
 
 /**
@@ -5071,7 +4980,7 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /**
@@ -38448,39 +38357,39 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(12);
+__webpack_require__(11);
 module.exports = angular;
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = "<h1>test create assignment</h1>\n\n <div class=\"create\">\n\t<form ng-submit=\"$ctrl.addNewAssignment()\" id=\"newAssignment\">\n\t<div>\n\t\t<label for=\"newAssignment-name\">Name: </label>\n\t\t<input type=\"text\"\n\t\t    ng-model=\"$ctrl.newAssignment.name\"\n\t\t    placeholder=\"put a name here...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-assignmentType\">Assignment Type: </label>\n\t    <input type=\"text\"\n\t    \tng-model=\"$ctrl.newAssignment.assignmentType\"\n\t    \tplaceholder=\"test... quiz... project...\">\n\t</div>\n\t<div>\n\t    <label for=\"newAssignment-pointsMax\">Max Points: </label>\n\t    <input type=\"text\"\n\t    \tng-model=\"$ctrl.newAssignment.pointsMax\"\n\t    \tplaceholder=\"points...\">\n\t</div>\n    <div>\n      <input class=\"btn btn-primary\" type=\"submit\" value=\"Add Assignment\">\n    </div>\n</div>\n</div>\n\n<div>\n\t<input onclick=\"history.back(-1)\" class=\"btn btn-default\" type=\"submit\" value=\"Go Back\">\n</div>\n";
 
 /***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n  <form class=\"form-group\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\">\n    <label>Email:</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"email\"\n           required>\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\n           <br>\n\n    <label>Password</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"password\"\n           required>\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\n    <br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form><br>\n\n\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\n\n<<<<<<< HEAD\n    <input type=\"submit\" ui-sref=\"show({ userId:'58eb9129be29bd3c1a4c731e'})\" value=\"submit\">\n  </form>\n=======\n>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba\n\n</div>\n";
+
+/***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n  <form class=\"form-group\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\">\n    <label>Email:</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"email\"\n           required>\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\n           <br>\n\n    <label>Password</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"password\"\n           required>\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\n    <br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form><br>\n\n\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\n\n\n</div>\n";
+module.exports = "<div class=\"show-section row\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Students</h4>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Grades</h4>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n<br>\n<<<<<<< HEAD\n<input ui-sref=\"createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\"> \n=======\n<input ui-sref=\"createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\">\n>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba\n<!-- later try userId: $ctrl.current._id\n -->\n\n\n\n<div class=\"show-footer\">\n  <hr>\n  <input ui-sref=\"createAssignment\" class=\"btn btn-primary\" type=\"submit\" value=\"Add Assignment\">\n  <br>\n\n\n  <br>\n  <input ui-sref=\"home\" class=\"btn btn-default\" type=\"submit\" value=\"Log Out\">\n\n</div>\n";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section row\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Students</h4>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Grades</h4>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n<br>\n<input ui-sref=\"createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\">\n<!-- later try userId: $ctrl.current._id\n -->\n\n\n\n<div class=\"show-footer\">\n  <hr>\n  <input ui-sref=\"createAssignment\" class=\"btn btn-primary\" type=\"submit\" value=\"Add Assignment\">\n  <br>\n\n\n  <br>\n  <input ui-sref=\"home\" class=\"btn btn-default\" type=\"submit\" value=\"Log Out\">\n\n</div>\n";
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
 module.exports = "<div class=\"signup-section container-fluid\">\n  <h2>Signup</h2>\n\n  <form ng-submit=\"$ctrl.addNewUser()\" class=\"form-group\" method=\"post\">\n    <label>Email:</label>\n    <input class=\"form-control\" type=\"text\" ng-model=\"$ctrl.newUser.email\" name=\"email\"><br>\n\n    <label>Password</label>\n    <input class=\"form-control\" type=\"text\" ng-model=\"$ctrl.newUser.password\" name=\"password\"><br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"login\" value=\"Submit\">\n  </form>\n  <br>\n\n  <h6>Already have an account? <a ui-sref=\"login\">Log in here.</a> </h6>\n\n</div>\n\n<div>\n  <li ng-repeat=\"user in $ctrl.current\">\n    <p>{{$ctrl.username}}</p>\n  <button ng-click=\"$ctrl.deleteUser(user)\" class=\"btn btn-warning\">Delete Assignment</button>\n  </li>\n</div>\n";
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
@@ -38492,8 +38401,7 @@ __webpack_require__(7);
 __webpack_require__(2);
 __webpack_require__(8);
 __webpack_require__(3);
-__webpack_require__(9);
-module.exports = __webpack_require__(10);
+module.exports = __webpack_require__(9);
 
 
 /***/ })
