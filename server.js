@@ -24,6 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var usersController = require('./controllers/users.js');
 app.use('/api/users', usersController);
 
+var sessionsController = require('./controllers/sessions.js');
+app.use('/api/sessions', sessionsController);
+
 app.listen(process.env.PORT || 3000, function() {
   console.log("We are up and running...");
 });

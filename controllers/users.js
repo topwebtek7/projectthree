@@ -5,9 +5,10 @@ var methodOverride = require('method-override');
 var User = require('../models/user');
 var Student = require('../models/student');
 var Assignment = require('../models/assignment');
-var logger = require('morgan'); /*---this caused an error with GET*/
-//var methodOverride = require('method-override');
+var logger = require('morgan');
 var User = require('../models/User');
+
+
 
 
 
@@ -21,7 +22,7 @@ router.get('/:id', function showAction(request, response) {
 	User.findById({_id: id}, function(error, user) {
 		if(error) response.json({message: 'Could not find the user b/c:' + error});
 
-		response.json({user: user});
+		res.json({user: user});
 	});
 });
 

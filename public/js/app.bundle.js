@@ -116,11 +116,22 @@ module.exports = HomeController;
 /* 2 */
 /***/ (function(module, exports) {
 
-LoginController.$inject = [];
+LoginController.$inject = ['AuthService'];
 
-function LoginController() {
+function LoginController(AuthService) {
   const vm = this;
-  let temp = '58e8f03b22c5dc033454ed1b';
+
+  vm.loginUnauth = loginUnauth;
+  vm.login = {};
+
+  function loginUnauth() {
+    console.log("Hit login button");
+    AuthService.loginUser(vm.login.email, vm.login.password).then(function resolve(response) {
+      console.log("function working");
+      vm.current = response.data.user;
+      console.log("the user id is" + current.userId);
+    });
+  }
 }
 
 module.exports = LoginController;
@@ -314,26 +325,22 @@ angular.module('gradeBook').component('signup', component);
 /* 11 */
 /***/ (function(module, exports) {
 
-// angular
-// 	.module('gradeBook')
-// 	.service('AuthService', AuthService);
-//
-// AuthService.$inject = ['$http', '$state', 'Notification'];
-// function AuthService($http, $state, Notification) {
-//     const self = this;
-//
-//     self.logUserIn = logUserIn;
-//
-//     // function logUserIn(credentials) {
-//     //     return $http
-//     //         .post('/api/sessions', credentials)
-//     //         .then(function onSuccessDoThis(res) {
-//     //             $state.go('foldersIndex');
-//     //         }, function onErrorDoThis(res) {
-//     //             Notification.errorMessage(res.message);
-//     //         });
-//     // }
-// }
+angular.module('gradeBook').service('AuthService', AuthService);
+
+AuthService.$inject = ['$http'];
+function AuthService($http) {
+  const self = this;
+
+  self.loginUser = loginUser;
+
+  function loginUser(email, password) {
+    console.log("user services" + password);
+    return $http.post('api/sessions/', {
+      email: email,
+      password: password
+    });
+  }
+}
 
 /***/ }),
 /* 12 */
@@ -358,7 +365,6 @@ function UsersService($http) {
 	}
 
 	function addAssignment(id, name, assignmentType, pointsMax) {
-
 		return $http.put('/api/users/' + id, {
 			name: name,
 			assignmentType: assignmentType,
@@ -368,12 +374,6 @@ function UsersService($http) {
 	function addNewUser(id) {
 		return $http.post('/api/users/', newUser);
 	}
-
-	/*function updateUser(id) {
- 		return $http
- 	.put('/api/users/' + id);
- 	return $http.patch('/api/users/' + id );
- }*/
 
 	function deleteUser(user) {
 		console.log("My user id is not working");
@@ -38471,7 +38471,7 @@ module.exports = "<script type=\"text/javascript\"></script>\n\n<link href='http
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n  <form class=\"form-group\" ui-sref=\"show({ userId:'58eb9129be29bd3c1a4c731e'})\">\n    <label>Email:</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"email\"\n           required>\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\n           <br>\n\n    <label>Password</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"password\"\n           required>\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\n    <br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"show({ userId:'58eb9129be29bd3c1a4c731e'})\" value=\"submit\">\n  </form><br>\n\n\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\n\n    <!-- <input type=\"submit\" ui-sref=\"show({ userId:'58eb9129be29bd3c1a4c731e'})\" value=\"submit\">\n  </form> -->\n\n</div>\n";
+module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n  <form ng-submit=\"$ctrl.loginUnauth()\" class=\"form-group\">\n    <label>Email:</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"email\"\n           ng-model=\"$ctrl.login.email\"\n           required>\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\n           <br>\n\n    <label>Password</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"password\"\n           ng-model=\"$ctrl.login.password\"\n           required>\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\n    <br>\n\n    <input class=\"btn btn-primary\" type=\"submit\"  value=\"submit\">\n  </form><br>\n\n\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\n\n\n</div>\n<!-- ui-sref=\"show({ userId: userId})\" -->\n";
 
 /***/ }),
 /* 19 */
