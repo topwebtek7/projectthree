@@ -29,11 +29,16 @@ function UsersService($http) {
 
 	function updateUser(id) {
 
+<<<<<<< HEAD
+		return $http
+		.put('/api/users/' + id);
+=======
 		return $http.patch('/api/users/' + id );
 	}
 
 	function deleteUser(user) {
 		console.log("My user id is not working");
 		return $http.delete('/api/users/' + user._id);
+>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
 	}
 }

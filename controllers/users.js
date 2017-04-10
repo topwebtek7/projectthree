@@ -25,6 +25,14 @@ router.get('/:id', function showAction(request, response) {
 	});
 });
 
+<<<<<<< HEAD
+function updateStudents (newAssignment, user) {
+  for (var i = 0; i < user.students.length; i++){
+    const student = user.students[i];
+    student.assignments.push(newAssignment);
+  }
+}
+=======
 //======================
 // USER REGISTRATION
 //======================
@@ -40,22 +48,58 @@ router.post('/', function createUser(req, res){
   });
 });
 
+>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
 
 router.put('/:id', function updateAction(request, response) {
 
-//var newAssignmentToAdd =
-//probabaly not necessary
+  // update user and the users students and anything touching the db
+  console.log ('I made it to the put');
 
-User.findByIdAndUpdate(req.params.id, {
-	students: req.body.students
-}, {new: true})
-.exec(function(err, user) {
-		if (err) { console.log(err);}
+  // Solving the problem
+  // Find the current user
+  // Loop over each of that user's students
+  // For each student, push an assignment object
+    // Some come from req.body info
+    // Some are hardcoded (such as pointsEarned being 0)
+  // Save the user
 
+  // Find the current user
+  User
+    .findById(request.params.id)
+    .exec(function pushAssignmentToAllStudents(err, user) {
+      // Loop over each of that user's students
+      user.students.forEach(function pushAssignment(student, index) {
+        // For each student, push an assignment object
+          // Some come from req.body info
+          // Some are hardcoded (such as pointsEarned being 0)
+        const assignment = new Assignment({
+          name: request.body.name,
+          assignmentType: request.body.assignmentType,
+          pointsEarned: 0,
+          pointsMax: request.body.pointsEarned,
+        }); // leave this for you to do
+
+        student.assignments.push(assignment);
+      });
+
+      response.send({ user : user})
+    })
+    // Save the user
+    
+    .save(function(err, user) {
+        if (err) { console.log(err); }
+
+        console.log(user);
+        });
+
+
+<<<<<<< HEAD
+=======
 		console.log(user);
 		//no need to redirect in this situation
 		//redirection can happen on the client side
 })
+>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba
 });
 
 /*var writers = [req.body.favorite1, req.body.favorite2, req.body.favorite3];

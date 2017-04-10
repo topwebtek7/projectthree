@@ -79,6 +79,7 @@ function CreateAssignmentController($stateParams, UsersService) {
   vm.addNewAssignment = addNewAssignment; //attaching the function to vm
   vm.newAssignment = {}; //initializing newAssignment
   vm.current = {};
+  vm.updatedStudents = {};
 
   activate();
 
@@ -89,43 +90,12 @@ function CreateAssignmentController($stateParams, UsersService) {
   function addNewAssignment() {
     console.log('this is from addNewAssignment' + vm.newAssignment.name);
 
-    UsersService.loadCurrent($stateParams.userId).then(function resolve(response) {
+    //how the form data make it to the controller server-side???
+
+    UsersService.updateUser($stateParams.userId).then(function resolve(response) {
       vm.current = response.data.user;
-
-      for (var i = 0; i < vm.current.students.length; i++) {
-        vm.current.students[i].assignments.push(vm.newAssignment);
-      }
-      console.log("vm current " + vm.current.username);
-      console.log("ass2" + vm.current.students[3].assignments[1].name);
-      console.log("ass3" + vm.current.students[3].assignments[2].name);
     });
-
-    UsersService.updateUser(vm.current._id).then(function resolve(response) {
-      console.log(vm.current);
-    });
-
-    vm.current = {};
   }
-
-  /*function loadCurrent() {
-  	console.log($stateParams);
-  	UsersService
-  		.loadCurrent($stateParams.userId)
-  		.then(function resolve(response) {
-  			vm.current = response.data.user;
-  		})
-   	for (var i = 0; i < vm.current.students.length; i++) {
-  		console.log(i);
-  	}
-  	
-   addNewAssignment();
-  }
-  function addNewAssignment() {*/
-  /*UserService
-  	.addAssignment(vm.newAssignment)
-  	.then(function resolve(response){
-  		vm.newAssignment;
-  	});*/
 }
 
 module.exports = CreateAssignmentController;
@@ -369,43 +339,7 @@ angular.module('gradeBook').component('signup', component);
 /* 12 */
 /***/ (function(module, exports) {
 
-angular.module('gradeBook').service('UsersService', UsersService);
-
-UsersService.$inject = ['$http'];
-
-function UsersService($http) {
-	const self = this;
-
-	self.loadCurrent = loadCurrent;
-	self.addNewAssignment = addNewAssignment;
-	self.addNewUser = addNewUser;
-	self.updateUser = updateUser;
-	/*self.addNewAssignment = addNewAssignment;*/
-	self.deleteUser = deleteUser;
-
-	function loadCurrent(id) {
-		return $http.get('/api/users/' + id);
-	}
-
-	function addNewAssignment(newAssignment) {
-
-		return $http.get('/api/users/' + id);
-	}
-
-	function addNewUser(id) {
-		return $http.post('/api/users/', newUser);
-	}
-
-	function updateUser(id) {
-
-		return $http.patch('/api/users/' + id);
-	}
-
-	function deleteUser(user) {
-		console.log("My user id is not working");
-		return $http.delete('/api/users/' + user._id);
-	}
-}
+throw new Error("Module build failed: SyntaxError: Unexpected token (32:0)\n\n\u001b[0m \u001b[90m 30 | \u001b[39m\t\u001b[36mfunction\u001b[39m updateUser(id) {\n \u001b[90m 31 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 33 | \u001b[39m\t\t\u001b[36mreturn\u001b[39m $http\n \u001b[90m 34 | \u001b[39m\t\t\u001b[33m.\u001b[39mput(\u001b[32m'/api/users/'\u001b[39m \u001b[33m+\u001b[39m id)\u001b[33m;\u001b[39m\n \u001b[90m 35 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 13 */
@@ -38497,13 +38431,13 @@ module.exports = "<script type=\"text/javascript\"></script>\n\n<link href='http
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n  <form class=\"form-group\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\">\n    <label>Email:</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"email\"\n           required>\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\n           <br>\n\n    <label>Password</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"password\"\n           required>\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\n    <br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form><br>\n\n\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\n\n\n</div>\n";
+module.exports = "<div class=\"login-section container-fluid\">\n  <h2>Login</h2>\n  <form class=\"form-group\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\">\n    <label>Email:</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"email\"\n           required>\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\n           <br>\n\n    <label>Password</label>\n    <input class=\"form-control\"\n           type=\"text\"\n           name=\"password\"\n           required>\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\n    <br>\n\n    <input class=\"btn btn-primary\" type=\"submit\" ui-sref=\"show({ userId:'58e8f03b22c5dc033454ed1b'})\" value=\"submit\">\n  </form><br>\n\n\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\n\n<<<<<<< HEAD\n    <input type=\"submit\" ui-sref=\"show({ userId:'58eb9129be29bd3c1a4c731e'})\" value=\"submit\">\n  </form>\n=======\n>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba\n\n</div>\n";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"show-section row\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Students</h4>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Grades</h4>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n<div>\n  <div class=\"col-lg-12\">\n                      <div class=\"panel panel-default\">\n                          <div class=\"panel-heading\">\n                              DataTables Advanced Tables\n                          </div>\n                          <!-- /.panel-heading -->\n                          <div class=\"panel-body\">\n                              <table width=\"100%\" id=\"example\" class=\" table table-striped table-bordered table-hover\" id=\"dataTables-example\">\n                                  <thead>\n                                      <tr ng=\"student in $ctrl.current.students\">\n                                          <th>Students</th>\n                                          <th>Grades</th>\n                                          <th>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</th>\n                                          <th>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</th>\n                                          <th>Delete</th>\n\n                                      </tr>\n                                  </thead>\n                                  <tbody>\n                                      <tr ng-repeat=\"student in $ctrl.current.students\" scope=\"row\" class=\"odd gradeX\" label=\"Students\">\n                                          <td>{{student.lastName}}, {{student.firstName}}</td>\n                                          <td>{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%</td>\n                                          <td>{{student.assignments[0].pointsEarned}}</td>\n                                          <td>{{student.assignments[1].pointsEarned}}</td>\n                                          <td class=\"center\">X</td>\n                                      </tr>\n\n                                  </tbody>\n                              </table>\n                              <!-- /.table-responsive -->\n                              <div class=\"well\">\n                                  <h4>DataTables Usage Information</h4>\n                                  <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target=\"_blank\" href=\"https://datatables.net/\">https://datatables.net/</a>.</p>\n                                  <a class=\"btn btn-default btn-lg btn-block\" target=\"_blank\" href=\"https://datatables.net/\">View DataTables Documentation</a>\n                              </div>\n                          </div>\n\n<br>\n<div>\n<input ui-sref=\"createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\">\n<!-- later try userId: $ctrl.current._id\n -->\n</div>\n<div class=\"show-footer\">\n  <hr>\n  <input ui-sref=\"createAssignment\" class=\"btn btn-primary\" type=\"submit\" value=\"Add Assignment\">\n  <br>\n\n\n  <br>\n  <input ui-sref=\"home\" class=\"btn btn-default\" type=\"submit\" value=\"Log Out\">\n\n</div>\n";
+module.exports = "<div class=\"show-section row\">\n  <h1>Welcome {{$ctrl.current.username}}</h1>\n <hr>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Students</h4>\n\t\t  <p ng-repeat=\"student in $ctrl.current.students\">\n\t\t  {{student.lastName}}, {{student.firstName}}</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>Grades</h4>\n\t\t\t<p ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%\n\t\t\t</p>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[1].pointsEarned\">\n\t\t\t</div>\n\t</div>\n\n\t<div class=\"col col-md-3\">\n\t\t<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>\n\t\t\t<div ng-repeat=\"student in $ctrl.current.students\">\n\t\t\t<input type=\"number\" name=\"points-earned\" min=\"0\" ng-model=\"student.assignments[0].pointsEarned\">\n\t\t\t</div>\n\t</div>\n</div>\n<div>\n  <div class=\"col-lg-12\">\n                      <div class=\"panel panel-default\">\n                          <div class=\"panel-heading\">\n                              DataTables Advanced Tables\n                          </div>\n                          <!-- /.panel-heading -->\n                          <div class=\"panel-body\">\n                              <table width=\"100%\" id=\"example\" class=\" table table-striped table-bordered table-hover\" id=\"dataTables-example\">\n                                  <thead>\n                                      <tr ng=\"student in $ctrl.current.students\">\n                                          <th>Students</th>\n                                          <th>Grades</th>\n                                          <th>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</th>\n                                          <th>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</th>\n                                          <th>Delete</th>\n\n                                      </tr>\n                                  </thead>\n                                  <tbody>\n                                      <tr ng-repeat=\"student in $ctrl.current.students\" scope=\"row\" class=\"odd gradeX\" label=\"Students\">\n                                          <td>{{student.lastName}}, {{student.firstName}}</td>\n                                          <td>{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%</td>\n                                          <td>{{student.assignments[0].pointsEarned}}</td>\n                                          <td>{{student.assignments[1].pointsEarned}}</td>\n                                          <td class=\"center\">X</td>\n                                      </tr>\n\n                                  </tbody>\n                              </table>\n                              <!-- /.table-responsive -->\n                              <div class=\"well\">\n                                  <h4>DataTables Usage Information</h4>\n                                  <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target=\"_blank\" href=\"https://datatables.net/\">https://datatables.net/</a>.</p>\n                                  <a class=\"btn btn-default btn-lg btn-block\" target=\"_blank\" href=\"https://datatables.net/\">View DataTables Documentation</a>\n                              </div>\n                          </div>\n\n<br>\n<<<<<<< HEAD\n<div>\n=======\n<<<<<<< HEAD\n<input ui-sref=\"createAssignment({ userId:'58eb9129be29bd3c1a4c731e'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\"> \n=======\n>>>>>>> de3836cfccae29ada42e8618466100084a40e0d5\n<input ui-sref=\"createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})\" class=\"btn btn-default\" type=\"submit\" value=\"create new assignment\">\n>>>>>>> 2ff25a0febd9403dc4e66e2d1b105153d24c0aba\n<!-- later try userId: $ctrl.current._id\n -->\n</div>\n<div class=\"show-footer\">\n  <hr>\n  <input ui-sref=\"createAssignment\" class=\"btn btn-primary\" type=\"submit\" value=\"Add Assignment\">\n  <br>\n\n\n  <br>\n  <input ui-sref=\"home\" class=\"btn btn-default\" type=\"submit\" value=\"Log Out\">\n\n</div>\n";
 
 /***/ }),
 /* 20 */
