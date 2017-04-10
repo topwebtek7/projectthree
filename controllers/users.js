@@ -9,6 +9,8 @@ var logger = require('morgan'); /*---this caused an error with GET*/
 //var methodOverride = require('method-override');
 var User = require('../models/User');
 
+
+
 //=============================
 // Show Page (User Logged In)
 //=============================
@@ -21,6 +23,21 @@ router.get('/:id', function showAction(request, response) {
 
 		response.json({user: user});
 	});
+});
+
+//======================
+// USER REGISTRATION
+//======================
+router.post('/', function createUser(req, res){
+	console.log('body:',request.body);
+
+  var user = new User(request.body);
+
+  user.save(function(error) {
+    if(error) response.json({messsage: 'Could not ceate user b/c:' + error});
+
+    response.json({user: user});
+  });
 });
 
 
@@ -87,17 +104,17 @@ router.patch('/:id', function updateAction(request, response) {
 });*/
 
 //=============================
-// Show Page (User Logged In)
+// Delete User
 //=============================
 
 router.delete('/:id', function destroyAction(request, response) {
-  var id = req.params.id;
+  var id = request.params.id;
 
   User.remove({_id: id}, function(error) {
     if(error) response.json({message: 'Could not delete criminal b/c:' + error});
 
     response.json({message: 'Criminal successfully deleted'});
-  }).select('-__v');
+  });
 });
 
 module.exports = router;

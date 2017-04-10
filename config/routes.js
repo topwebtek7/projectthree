@@ -5,11 +5,12 @@ var express = require('express'),
 
 var usersController = require('../controllers/users');
 
-// 
-// router.route('/users/:id')
-//
-//
-//   .delete(usersController.removeUser);
+router.route('/users')
+  .post(usersController.createUser);
+
+
+router.route('/users/:id')
+  .delete(usersController.removeUser);
 
 
 module.exports = router;
