@@ -21,6 +21,6 @@ function UsersService($http) {
 	function updateUser(id) {
 
 		return $http
-		.patch('/api/users/' + id );
+		.put('/api/users/' + id );
 	}
 }

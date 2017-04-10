@@ -79,6 +79,7 @@ function CreateAssignmentController($stateParams, UsersService) {
   vm.addNewAssignment = addNewAssignment; //attaching the function to vm
   vm.newAssignment = {}; //initializing newAssignment
   vm.current = {};
+  vm.updatedStudents = {};
 
   activate();
 
@@ -98,13 +99,18 @@ function CreateAssignmentController($stateParams, UsersService) {
       console.log("vm current " + vm.current.username);
       console.log("ass2" + vm.current.students[3].assignments[1].name);
       console.log("ass3" + vm.current.students[3].assignments[2].name);
+
+      vm.updatedStudents = vm.current.students;
+      console.log("vm updatedStudents" + vm.updatedStudents[3].assignments[1].name);
+      console.log("vm updatedStudents" + vm.updatedStudents[3].assignments[2].name);
     });
 
-    UsersService.updateUser(vm.current._id).then(function resolve(response) {
-      console.log(vm.current);
-    });
-
-    vm.current = {};
+    /*UsersService
+      .updateUser($stateParams.userId)
+      .then(function resolve(response) {
+        console.log(vm.current);
+      })
+       vm.current = {};*/
   }
 
   /*function loadCurrent() {
@@ -312,7 +318,7 @@ function UsersService($http) {
 
 	function updateUser(id) {
 
-		return $http.patch('/api/users/' + id);
+		return $http.put('/api/users/' + id);
 	}
 }
 

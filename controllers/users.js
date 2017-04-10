@@ -19,21 +19,22 @@ router.get('/:id', function showAction(request, response) {
 	});
 });
 
-router.put('/:id', function updateAction(request, response) {
+router.put('/:id', function updateAction(req, res) {
 
 //var newAssignmentToAdd =
 //probabaly not necessary
 
-User.findByIdAndUpdate(req.params.id, {
-	students: req.body.students
-}, {new: true})
-.exec(function(err, user) {
-		if (err) { console.log(err);}
+  User.findByIdAndUpdate(req.params.id, {
+  	students: req.body.students
+  }, {new: true})
+  .exec(function(err, user) {
+  		if (err) { console.log(err);}
 
-		console.log(user);
-		//no need to redirect in this situation
-		//redirection can happen on the client side
-})
+  		console.log(user);
+  		//no need to redirect in this situation
+  		//redirection can happen on the client side
+  })
+});
 
 /*var writers = [req.body.favorite1, req.body.favorite2, req.body.favorite3];
   var books = [req.body.book1, req.body.book2, req.body.book3];
