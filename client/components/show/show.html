@@ -1,44 +1,49 @@
-<div class="show-section">
+<div class="show-section row">
   <h1>Welcome {{$ctrl.current.username}}</h1>
  <hr>
 
 	<div class="col col-md-3">
-		<h3>Students</h3>
+		<h4>Students</h4>
 		  <p ng-repeat="student in $ctrl.current.students">
 		  {{student.lastName}}, {{student.firstName}}</p>
 	</div>
 
 	<div class="col col-md-3">
-		<h3>Grades</h3>
+		<h4>Grades</h4>
 			<p ng-repeat="student in $ctrl.current.students">
 			{{ getSumPointsEarned(student) / getSumPointsMax(student)*100 | number: 1 }}%
-			</p> 
+			</p>
 	</div>
 
 	<div class="col col-md-3">
-		<h3>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h3>
+		<h4>{{$ctrl.current.students[0].assignments[1].name}} - {{$ctrl.current.students[0].assignments[1].pointsMax}}</h4>
 			<div ng-repeat="student in $ctrl.current.students">
-			<input type="text" name="points-earned" ng-model = 
-			"student.assignments[1].pointsEarned">
+			<input type="number" name="points-earned" min="0" ng-model="student.assignments[1].pointsEarned">
 			</div>
 	</div>
 
 	<div class="col col-md-3">
-		<h3>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h3>
+		<h4>{{$ctrl.current.students[0].assignments[0].name}} - {{$ctrl.current.students[0].assignments[0].pointsMax}}</h4>
 			<div ng-repeat="student in $ctrl.current.students">
-			<input type="text" name="points-earned" ng-model = 
-			"student.assignments[0].pointsEarned">
+			<input type="number" name="points-earned" min="0" ng-model="student.assignments[0].pointsEarned">
 			</div>
 	</div>
 </div>
-
 <br>
-<br>
+<<<<<<< HEAD
 <input ui-sref="createAssignment({ userId:'58e8f03b22c5dc033454ed1b'})" class="btn btn-default" type="submit" value="create new assignment"> 
 <!-- later try userId: $ctrl.current._id
  -->
 
 
 
+=======
+>>>>>>> 625285fdc24a8df8bc73d765e81e1b60eee27fb4
 
+<div class="show-footer">
+  <hr>
+  <input ui-sref="createAssignment" class="btn btn-primary" type="submit" value="Add Assignment">
+  <br>
+  <input ui-sref="home" class="btn btn-default" type="submit" value="Log Out">
 
+</div>
