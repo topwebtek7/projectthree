@@ -10,7 +10,8 @@ router.route('/users')
 
 
 router.route('/users/:id')
-  .delete(usersController.removeUser);
+  .delete(usersController.destroyAction)
+  .put(usersController.updateAction);
 
 
 module.exports = router;
