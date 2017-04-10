@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var User = require('../models/user');
+var Student = require('../models/student');
+var Assignment = require('../models/assignment');
 var logger = require('morgan'); /*---this caused an error with GET*/
 //var methodOverride = require('method-override');
 var User = require('../models/User');
@@ -19,6 +23,7 @@ router.get('/:id', function showAction(request, response) {
 	});
 });
 
+
 router.put('/:id', function updateAction(request, response) {
 
 //var newAssignmentToAdd =
@@ -34,6 +39,7 @@ User.findByIdAndUpdate(req.params.id, {
 		//no need to redirect in this situation
 		//redirection can happen on the client side
 })
+});
 
 /*var writers = [req.body.favorite1, req.body.favorite2, req.body.favorite3];
   var books = [req.body.book1, req.body.book2, req.body.book3];
@@ -58,9 +64,9 @@ router.patch('/:id', function updateAction(request, response) {
 
   User.findById({_id: id}, function(error, user) {
     if(error) response.json({message: 'Could not find user b/c:' + error});*/
-    
+
     /*console.log("router test: " + request.body.students[1].assignment[2].name)*/
-    
+
     /*for (var i = 0; i < request.body.students.length; i++) {
     	for (var j = 0; j < request.body.students[i].assignments.length; j++) {
     		if (request.body.students[i]) user.students[i].assignments[j] = request.body.students[i].assignment[j];
@@ -79,5 +85,19 @@ router.patch('/:id', function updateAction(request, response) {
     });
   }).select('-__v');
 });*/
+
+//=============================
+// Show Page (User Logged In)
+//=============================
+
+router.delete('/:id', function destroyAction(request, response) {
+  var id = req.params.id;
+
+  User.remove({_id: id}, function(error) {
+    if(error) response.json({message: 'Could not delete criminal b/c:' + error});
+
+    response.json({message: 'Criminal successfully deleted'});
+  }).select('-__v');
+});
 
 module.exports = router;

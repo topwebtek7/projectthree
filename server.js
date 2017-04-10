@@ -2,9 +2,10 @@ require('dotenv').config();
 
 const express = require('express');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 
 const app = express();
+const bodyParser = require('body-parser');
+
 
 const mongoose = require('mongoose');
 
@@ -14,6 +15,9 @@ mongoose.connection.on('error', function (err) {
   console.log(err);
   process.exit(-1);
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public'));
 
