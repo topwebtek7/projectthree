@@ -18,9 +18,9 @@ function UsersService($http) {
 	} 
 
 
-	function updateUser(id) {
+	function updateUser(id, newStudents) {
 
 		return $http
-		.put('/api/users/' + id );
+		.put('/api/users/' + id);
 	}
 }

@@ -19,13 +19,14 @@ router.get('/:id', function showAction(request, response) {
 	});
 });
 
-router.put('/:id', function updateAction(req, res) {
+router.put('/:id', function updateAction(request, response) {
 
 //var newAssignmentToAdd =
 //probabaly not necessary
-
-  User.findByIdAndUpdate(req.params.id, {
-  	students: req.body.students
+  console ('I made it to the the put');
+  User.findByIdAndUpdate(request.params.id, {
+  	students: request.body.newStudents
+    
   }, {new: true})
   .exec(function(err, user) {
   		if (err) { console.log(err);}

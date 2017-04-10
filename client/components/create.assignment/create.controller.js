@@ -36,42 +36,23 @@ function CreateAssignmentController($stateParams, UsersService) {
       vm.updatedStudents = vm.current.students;
       console.log("vm updatedStudents" + vm.updatedStudents[3].assignments[1].name);
       console.log("vm updatedStudents" + vm.updatedStudents[3].assignments[2].name);
-      })
 
-    /*UsersService
-      .updateUser($stateParams.userId)
+      updateStudentAssignments(vm.updatedStudents);
+
+      })    
+
+  }
+
+  function updateStudentAssignments(newStudents) {
+    UsersService
+      .updateUser($stateParams.userId, newStudents)
       .then(function resolve(response) {
-        console.log(vm.current);
+        console.log(vm.c);
       })
 
-      vm.current = {};*/
-
+      vm.current = {};
   }
 
-
-  
-
-  /*function loadCurrent() {
-  	console.log($stateParams);
-  	UsersService
-  		.loadCurrent($stateParams.userId)
-  		.then(function resolve(response) {
-  			vm.current = response.data.user;
-  		})
-
-  	for (var i = 0; i < vm.current.students.length; i++) {
-  		console.log(i);
-  	}
-  	
-   addNewAssignment();
-  }
-
-	function addNewAssignment() {*/
-		/*UserService
-			.addAssignment(vm.newAssignment)
-			.then(function resolve(response){
-				vm.newAssignment;
-			});*/	
 }
-
+ 
 module.exports = CreateAssignmentController;

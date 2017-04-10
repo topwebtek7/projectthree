@@ -16,6 +16,7 @@ mongoose.connection.on('error', function (err) {
 });
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 var usersController = require('./controllers/users.js');
 app.use('/api/users', usersController);
