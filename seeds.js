@@ -45,15 +45,15 @@ var users = [ {
 	  	students: testStudents
 	  	}  ];
 
-// User.remove({})
-//   .then(function(){
-//   	return User.create(users);
-//   })
-//   .then(function(users){
-//   	console.log(users);
-//   })
-//   .then(function(){
-//   	mongoose.connection.close(function () {
-//   	  console.log('Mongoose connection disconnected');
-//   	});
-//   });
+User.remove({})
+  .then(function(){
+  	return User.create(users);
+  })
+  .then(function(users){
+  	console.log(users);
+  })
+  .then(function(){
+  	mongoose.connection.close(function () {
+  	  console.log('Mongoose connection disconnected');
+  	});
+  });

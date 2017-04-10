@@ -31,6 +31,16 @@ small {
   text-align: center;
 }
 
+/*DASHBOARD*/
+.new-assignment {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.new-assignment {
+  text-align: center;
+}
+
 /*DASHBOARD FOOTER*/
 .show-footer {
   text-align: center;
