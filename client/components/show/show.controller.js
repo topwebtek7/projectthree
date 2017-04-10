@@ -3,9 +3,11 @@ ShowController.$inject = ['$stateParams', '$scope', 'UsersService'];
 function ShowController($stateParams, $scope, UsersService) {
   const vm = this;
   vm.current = {};
+  vm.user = [];
   vm.studentsGrades = [];
+  vm.deleteUser = deleteUser;
 
-  
+
   activate();
 
   function activate() {
@@ -38,8 +40,18 @@ function ShowController($stateParams, $scope, UsersService) {
           total += points;
       }
       return total;
-  } 
-  
+  }
+
+  function deleteUser(user){
+  UsersService
+    .deleteUser(user)
+    .then(function(response){
+      console.log("Deleted");
+      // var index = vm.user.indexOf(user);
+      // vm.user.splice(index, 1);
+   });
+}
+
 }
 
 module.exports = ShowController;

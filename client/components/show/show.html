@@ -35,6 +35,15 @@
   <hr>
   <input ui-sref="createAssignment" class="btn btn-primary" type="submit" value="Add Assignment">
   <br>
+
+
+  <br>
   <input ui-sref="home" class="btn btn-default" type="submit" value="Log Out">
 
+</div>
+<div>
+  <li>
+    <p>{{$ctrl.current.username}}</p>
+  <button ng-click="$ctrl.deleteUser(user)" class="btn btn-warning">Delete Assignment</button>
+  </li>
 </div>
