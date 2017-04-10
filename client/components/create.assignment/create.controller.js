@@ -12,18 +12,20 @@ function CreateAssignmentController($stateParams, UsersService) {
   activate();
 
   function activate() {
-  	addNewAssignment();
+  	
   }
 
   function addNewAssignment() {
   	console.log('this is from addNewAssignment' + vm.newAssignment.name);
 
     //how the form data make it to the controller server-side???
-
+    console.log("userID" + $stateParams.userId);
     UsersService
-      .updateUser($stateParams.userId)
+      .addAssignment($stateParams.userId)
       .then(function resolve(response) {
+        console.log("function working!")
         vm.current = response.data.user;
+        console.log("Back from the server!" + vm.current);
       });
   }
 }
