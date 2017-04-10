@@ -34,4 +34,4 @@ npm-debug.log
 .env
 .idea
 
-/public/js/app.bundle.js
+app.bundle.js

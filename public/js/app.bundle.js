@@ -116,9 +116,9 @@ module.exports = HomeController;
 /* 2 */
 /***/ (function(module, exports) {
 
-LoginController.$inject = ['AuthService'];
+LoginController.$inject = ['$state', 'AuthService'];
 
-function LoginController(AuthService) {
+function LoginController($state, AuthService) {
   const vm = this;
 
   vm.loginUnauth = loginUnauth;
@@ -127,9 +127,13 @@ function LoginController(AuthService) {
   function loginUnauth() {
     console.log("Hit login button");
     AuthService.loginUser(vm.login.email, vm.login.password).then(function resolve(response) {
-      console.log("function working");
-      vm.current = response.data.user;
-      console.log("the user id is" + current.userId);
+      const data = response.data;
+      if (data.success) {
+        vm.current = data.user;
+        $state.go('show');
+      } else {
+        console.log(data.message);
+      }
     });
   }
 }
@@ -38471,7 +38475,7 @@ module.exports = "<script type=\"text/javascript\"></script>\r\n\r\n<link href='
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-section container-fluid\">\r\n  <h2>Login</h2>\r\n  <form ng-submit=\"$ctrl.loginUnauth()\" class=\"form-group\">\r\n    <label>Email:</label>\r\n    <input class=\"form-control\"\r\n           type=\"text\"\r\n           name=\"email\"\r\n           ng-model=\"$ctrl.login.email\"\r\n           required>\r\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\r\n           <br>\r\n\r\n    <label>Password</label>\r\n    <input class=\"form-control\"\r\n           type=\"text\"\r\n           name=\"password\"\r\n           ng-model=\"$ctrl.login.password\"\r\n           required>\r\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\r\n    <br>\r\n\r\n    <input class=\"btn btn-primary\" type=\"submit\"  value=\"submit\">\r\n  </form><br>\r\n\r\n\r\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\r\n\r\n\r\n</div>\r\n<!-- ui-sref=\"show({ userId: userId})\" -->\r\n";
+module.exports = "<div class=\"login-section container-fluid\">\r\n  <h2>Login</h2>\r\n  <form ng-submit=\"$ctrl.loginUnauth()\" class=\"form-group\">\r\n    <label>Email:</label>\r\n    <input class=\"form-control\"\r\n           type=\"text\"\r\n           name=\"email\"\r\n           ng-model=\"$ctrl.login.email\"\r\n           required>\r\n           <small><div style=\"color: grey\" ng-message=\"required\">Email is required</div></small>\r\n           <br>\r\n\r\n    <label>Password</label>\r\n    <input class=\"form-control\"\r\n           type=\"text\"\r\n           name=\"password\"\r\n           ng-model=\"$ctrl.login.password\"\r\n           required>\r\n    <small><div style=\"color: grey\" ng-message=\"required\">Password is required</div></small>\r\n    <br>\r\n\r\n    <input class=\"btn btn-primary\" type=\"submit\" value=\"submit\">\r\n  </form><br>\r\n\r\n\r\n  <h6>First time? <a ui-sref=\"signup\">Start here.</a> </h6>\r\n\r\n\r\n</div>\r\n<!-- ui-sref=\"show({ userId: userId})\" -->\r\n";
 
 /***/ }),
 /* 19 */
