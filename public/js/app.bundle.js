@@ -90,7 +90,7 @@ function CreateAssignmentController($stateParams, UsersService) {
 
     //how the form data make it to the controller server-side???
     console.log("userID" + $stateParams.userId);
-    UsersService.addAssignment($stateParams.userId).then(function resolve(response) {
+    UsersService.addAssignment($stateParams.userId, vm.newAssignment.name, vm.newAssignment.assignmentType, vm.newAssignment.pointsMax).then(function resolve(response) {
       console.log("function working!");
       vm.current = response.data.user;
       console.log("Back from the server!" + vm.current);
@@ -357,9 +357,12 @@ function UsersService($http) {
 		return $http.get('/api/users/' + id);
 	}
 
-	function addAssignment(id) {
+	function addAssignment(id, name, assignmentType, pointsMax) {
 
-		return $http.put('/api/users/' + id);
+		return $http.put('/api/users/' + id, {
+			name: name,
+			assignmentType: assignmentType,
+			pointsMax: pointsMax });
 	}
 
 	function addNewUser(id) {

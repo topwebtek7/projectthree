@@ -18,10 +18,13 @@ function UsersService($http) {
 		return $http.get('/api/users/' + id);
 	}
 
-	function addAssignment(id) {
+	function addAssignment(id, name, assignmentType, pointsMax) {
 
 		return $http
-			.put('/api/users/' + id);
+			.put('/api/users/' + id, {
+				name: name, 
+				assignmentType: assignmentType,
+				pointsMax: pointsMax});
 	}
 
 	function addNewUser(id) {
