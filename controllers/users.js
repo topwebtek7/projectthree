@@ -41,7 +41,9 @@ router.post('/', function createUser(req, res){
   });
 });
 
-
+//======================
+// CREATE ASSIGNMENT
+//======================
 router.put('/:id', function updateAction(request, response) {
 
   console.log ('I made it to the put');
@@ -49,7 +51,9 @@ router.put('/:id', function updateAction(request, response) {
   var newAssignment = new Assignment({
     name: request.body.name,
     assignmentType: request.body.assignmentType,
-    pointsMax: request.body.pointsMax
+    pointsMax: request.body.pointsMax,
+		pointsEarned: 0,
+		dateCreated: {}
   });
   console.log(newAssignment);
 
@@ -66,7 +70,7 @@ router.put('/:id', function updateAction(request, response) {
   user.save();
   })
 
-  
+
 });
 
 

@@ -22,7 +22,7 @@ function UsersService($http) {
 
 		return $http
 			.put('/api/users/' + id, {
-				name: name, 
+				name: name,
 				assignmentType: assignmentType,
 				pointsMax: pointsMax});
 	}
