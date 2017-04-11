@@ -14,9 +14,9 @@ function LoginController($state, AuthService) {
       vm.login.password
     ).then(function resolve(response) {
       const data = response.data;
-      if( data.success){
+      if( data.success){                    // check if response is success means authenticated
           vm.current = data.user;
-          $state.go('show');
+          $state.go('show');                  // go to show page
       }else {
           console.log(data.message);
       }

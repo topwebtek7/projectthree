@@ -54,26 +54,8 @@ function getUsersSeedData(students){
     ]
 }
 
-// var users = [
-//     {
-//         username: 'TestWoman',
-//         email: 'abc@abc.com',
-//         password: 'abc',
-//         students: testStudents
-//     },
-//     {
-//         username: 'TestMan',
-//         email: 'abc@abc.com',
-//         password: 'abc',
-//         students: testStudents
-//     }
-// ];
+// Seed Database with relations
 function seedDatabase() {
-    // for (student of testStudents) {
-    //     var newStudent = new Student(student);
-    //     newStudent.save();
-    // }
-
     Assignment.remove({})
         .then(function(){
             return Assignment.create(seededAssignments);

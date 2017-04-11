@@ -33,7 +33,7 @@ router.post('/', function createUser(req, res){
   user.save(function(error) {
     if(error) response.json({messsage: 'Could not ceate user b/c:' + error});
 
-      res.json({user: user});
+      res.json({user: user});                 // changed with res which is second parameter of this method
   });
 });
 
